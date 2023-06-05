@@ -26,8 +26,8 @@ export default {
     <LoginForm/>
     <Footer/>
   </div>
-  <router-link to="NotFound"> HUI</router-link>
-  <div @click="gotoHUI">HUI</div>
+  <router-link to="NotFound"> Test NotFound link</router-link>
+  <div @click="gotoLogin" style="cursor: pointer"> Test gotoLogin method</div>
 </template>
 
 
