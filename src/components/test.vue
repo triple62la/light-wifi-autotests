@@ -29,7 +29,7 @@ export default {
       const [firstName, secondName, patronymic] = this.nameInput.split(" ")
       this.firstName = firstName;
       this.secondName = secondName;
-      this.patronymic
+      this.patronymic = patronymic
     },
 
   }
