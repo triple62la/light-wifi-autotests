@@ -2,14 +2,20 @@
   <header class="header">
     <h1 class="header__app-title">Light WiFi Sanity</h1>
     <div class="header__container">
-      <h2 class="header__page-title">Страница авторизации</h2>
+      <h2 class="header__page-title">{{title}}</h2>
     </div>
   </header>
 </template>
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  props:["title"],
+  methods: {
+    setTitle(){
+      this.$route
+    }
+  }
 }
 </script>
 
@@ -20,7 +26,7 @@ export default {
     height: 100px;
     border-bottom: 2px #EC7D18 solid;
     width: 100%;
-    display: flex;
+    flex: 0 0 auto;
     position: relative;
 
   }

@@ -1,25 +1,35 @@
 <template>
-  <Header/>
-  <LoginForm/>
+  <Header :title="this.pageTitle"/>
+  <main class="main">
+    <NavBar/>
+    <MonitoringSection/>
+
+  </main>
   <Footer/>
-  <div @click="gotoHUI">HUI</div>
 </template>
 
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LoginForm from "@/components/LoginForm";
+import NavBar from "@/components/NavBar";
+import MonitoringSection from "@/components/MonitoringSection";
 export default {
   name: "MainPage",
-  components: {LoginForm,Header,Footer},
+  components: {MonitoringSection, NavBar, LoginForm,Header,Footer},
   methods:{
-    gotoHUI(){
-      this.$router.push("/login")
+  },
+  data(){
+    return {
+      pageTitle:"Мониторинг"
     }
   }
 }
 </script>
 
 <style scoped>
-
+  .main{
+    display: flex;
+    flex: 1 0 auto;
+  }
 </style>

@@ -3,11 +3,9 @@ import "./assets/styles/main.css"
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LoginForm from "@/components/LoginForm";
-import Test from "@/components/test";
-import NotFound from "@/pages/NotFound";
 export default {
   name:"App",
-  components: {Footer, LoginForm},
+  components: {Header, Footer, LoginForm},
   data(){
     return {
 
@@ -23,27 +21,30 @@ export default {
 
 <template>
   <div class="page">
-    <LoginForm/>
-    <Footer/>
+    <router-view></router-view>
   </div>
-  <router-link to="NotFound"> Test NotFound link</router-link>
-  <div @click="gotoLogin" style="cursor: pointer"> Test gotoLogin method</div>
 </template>
 
 
 <style >
+
+*{
+  font-family:Inter, Arial, sans-serif;
+  margin: 0;
+}
+
   .page{
-    font-family: Inter Arial sans-serif;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     background-color: #333;
     width: 100vw;
     height: 100vh;
+    position: relative;
 
   }
   .main{
     display: flex;
-    flex: 1 0 auto;
+
   }
 </style>

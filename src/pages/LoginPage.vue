@@ -1,20 +1,24 @@
 <template>
 
-  <App/>
-  <Header/>
 
+  <Header :title="this.pageTitle"/>
+  <LoginForm/>
   <Footer/>
-  <Test/>
+
 </template>
 
 <script>
-import Header from "@/App";
-import LoginForm from "@/App";
-import Footer from "@/App";
-import Test from "@/App";
+import Header from "@/components/Header";
+import LoginForm from "@/components/LoginForm";
+import Footer from "@/components/Footer";
 export default {
   name: "LoginPage",
-  components: {Test, Footer, LoginForm, Header}
+  components: {Footer, Header,  LoginForm},
+  data(){
+    return {
+      pageTitle: "Страница авторизации"
+    }
+  }
 }
 </script>
 

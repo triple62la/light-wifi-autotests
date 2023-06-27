@@ -34,6 +34,7 @@ export default {
 
 
 <template>
+  <section class="login-section">
   <form class="login-form" action="" novalidate>
     <h2 class="login-form__title">Введите учетные данные:</h2>
     <input v-model="loginValue" @input="setElementValidation" class="login-form__input" type="text" name="login" id="login"
@@ -47,9 +48,14 @@ export default {
     <span class="login-form__error login-form__error_password">{{passwordErrMsg}}</span>
     <button type="submit" class="" :class="{'login-form__button':true,'login-form__button_disabled':!btnState}">вход</button>
   </form>
+  </section>
 </template>
 
 <style scoped>
+  .login-section{
+    display: flex;
+    flex: 1 0 auto;
+  }
   .login-form{
     margin: auto;
     width: 668px;
