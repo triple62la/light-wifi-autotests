@@ -17,9 +17,6 @@ export default {
   },
   methods:{
 
-    handleLeftClick(){
-      this.contextStore.close()
-    }
 
   },
   computed:{
@@ -33,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <section @click="handleLeftClick" @click.right.prevent = "handleLeftClick" class="cards" >
+  <section  class="cards" >
     <Card v-for="item in this.cardsStore.items"
           :key="item.id"
           :card-data="item"
@@ -52,7 +49,7 @@ export default {
     justify-content: center;
     flex-wrap: wrap;
     padding: 50px;
-    box-sizing: border-box;
+   box-sizing: border-box;
     gap: 25px;
     max-width: 1000px;
 

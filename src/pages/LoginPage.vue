@@ -1,7 +1,7 @@
 <template>
 
 
-  <Header :title="this.pageTitle"/>
+  <Header :title="this.pageTitle" :show-profile="false"/>
   <LoginForm/>
   <Footer/>
 

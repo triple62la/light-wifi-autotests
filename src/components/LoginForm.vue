@@ -35,7 +35,7 @@ export default {
 
 <template>
   <section class="login-section">
-  <form class="login-form" action="" novalidate>
+  <form class="login-form" novalidate @submit.prevent="this.$router.push('/')">
     <h2 class="login-form__title">Введите учетные данные:</h2>
     <input v-model="loginValue" @input="setElementValidation" class="login-form__input" type="text" name="login" id="login"
            minlength="3" maxlength="30" required pattern="^[a-zA-Z0-9\-]+$" placeholder="Логин"
@@ -93,6 +93,7 @@ export default {
   }
   .login-form__input::placeholder{
     color: gray;
+    padding-left: 10px;
   }
   .login-form__input_invalid{
     border-bottom: 2px solid #F06957;
@@ -105,7 +106,6 @@ export default {
     color:  #F06957;
     padding-top: 9px;
     width: 350px;
-    font-family: Inter;
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
