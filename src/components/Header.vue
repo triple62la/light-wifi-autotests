@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header__app-title-wrapper">
-      <div v-show="showBurger" class="header-burger-btn"></div>
+      <div v-show="showBurger" @click="navBarToggleOpened" class="header-burger-btn"></div>
       <h1 class="header__app-title">Light WiFi Sanity</h1>
     </div>
     <div class="header__container">
@@ -26,13 +26,13 @@ export default {
    }
   },
   computed:{
-    ...mapState(useRootStore, [""])
+    ...mapState(useRootStore, ["burgerBtnOpened"])
   },
   methods: {
     setTitle(){
       this.$route
     },
-    ...mapActions(useRootStore,[])
+    ...mapActions(useRootStore,["navBarToggleOpened"])
   }
 }
 </script>

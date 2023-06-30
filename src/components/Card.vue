@@ -54,6 +54,7 @@ export default {
           args:[]
         },
       ],
+
     }
   },
 
@@ -102,7 +103,6 @@ export default {
     ...mapActions(useContextStore, {contextOpen:"open", contextClose: "close"}),
 
     openContext(evt){
-      evt.preventDefault()
       evt.stopPropagation()
       this.contextClose()
       this.contextOpen({
@@ -112,6 +112,7 @@ export default {
         items: this.contextMenu
       })
       this.cardData.selected = true
+      document.addEventListener("click", this.contextClose, {once:true})
     },
     setDisabled(){
       apiSendDisabled(this.cardData.id)
@@ -151,7 +152,7 @@ export default {
 
 
 <template>
-  <div @click="test" @dblclick="doubletest" @click.right="openContext" class="card" :class="[{
+  <div @click.right.prevent.stop="openContext" class="card" :class="[{
     selected:this.cardData.selected,
     disabled: cardData.disabled},
     cardData.status, ]">

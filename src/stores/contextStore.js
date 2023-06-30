@@ -7,6 +7,7 @@ export const useContextStore = defineStore("context", {
         isOpened:false,
         parentEl: {},
         items:[],
+
     }),
 
     actions:{

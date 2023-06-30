@@ -14,19 +14,16 @@ export default {
   computed:{
     computedStyles(){
       if (this.x && this.y){
-        return `top:${this.y + 2}px; left:${this.x+2}px; height: ${this.height}px`
+        console.log(window.screen.width,document.documentElement.clientWidth, this.x )
+        return {
+          top:`${this.y+this.items.length*42>document.documentElement.clientWidth? //делаем так чтобы контекстное меню не вылезало за пределы экрана
+              this.y - this.items.length*42 - 2 :this.y + 2}px`,
+          left:`${this.x+220>document.documentElement.clientWidth? this.x- 202:this.x+2}px`, //делаем так чтобы контекстное меню не вылезало за пределы экрана
+          height: `${this.items.length*42}px`}
       }
       return ""
     },
-    height(){
-      return this.items.length*42
-    },
-    computedClasses(){
-      if (this.isOpened){
-        return "context context_opened"
-      }
-      return "context"
-    },
+
     ...mapState(useContextStore, ["x", "y", "isOpened", "parentEl", "items", ])
   },
   methods:{
@@ -42,9 +39,9 @@ export default {
 </script>
 
 <template>
-  <ul :class="computedClasses" :style="computedStyles" @click.right.prevent >
+  <ul v-show="this.isOpened" :class="[`context`,]" :style="computedStyles" @click.right.prevent >
     <li v-for="item in this.items"
-        @click="handleItemClick(item.func,item.args)"
+        @click.stop="handleItemClick(item.func,item.args)"
         class="context__element">{{item.name}}</li>
   </ul>
 </template>
@@ -59,15 +56,11 @@ export default {
     padding-inline-start: 0;
     z-index: 100;
     box-shadow: 1px 1px 3px white;
-    visibility: hidden;
     height: 0;
-    transition: visibility 0s;
+
 
   }
-  .context_opened{
-    visibility: visible;
-    transition:visibility 0s;
-  }
+
   .context__element{
     width: 200px;
     height: 42px;
@@ -77,8 +70,12 @@ export default {
     font-weight: 400;
     line-height: 16px;
     text-align: center;
-    padding-top: 15px;
+    padding: 15px 5px 0;
     border-bottom: 1px solid white;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
   }
   .context__element:hover{
     background-color: #333333;

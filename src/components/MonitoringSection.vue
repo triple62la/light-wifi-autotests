@@ -48,10 +48,10 @@ export default {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 50px;
+    padding: 25px;
    box-sizing: border-box;
     gap: 25px;
-    max-width: 1000px;
+    max-width: 100%;
 
   }
 </style>

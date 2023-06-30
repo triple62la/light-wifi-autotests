@@ -1,5 +1,5 @@
 <template>
-  <div v-show="showProfile" class="user-profile" @click="()=>contextIsVisible=!contextIsVisible" :class="{opened:contextIsVisible}">
+  <div v-show="showProfile" class="user-profile" @click.stop="toggleContext" :class="{opened:contextIsVisible}">
     <img src="../assets/images/icons/icon-profile-user2.png" alt="профиль" class="user-profile__image">
   </div>
   <ul v-show="contextIsVisible" class="context" >
@@ -31,6 +31,16 @@ export default {
 
       this.$router.push("/login")
     },
+    openContext(){
+      this.contextIsVisible = true;
+      document.addEventListener("click", this.closeContext, {once:true})
+    },
+    closeContext(){
+      this.contextIsVisible = false
+    },
+    toggleContext(){
+      this.contextIsVisible? this.closeContext(): this.openContext()
+    }
   }
 }
 </script>

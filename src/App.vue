@@ -38,8 +38,8 @@ export default {
     display: flex;
     flex-direction: column;
     background-color: #333;
-    width: 100vw;
-    height: 100vh;
+    max-width: 100vw;
+    min-height: 100vh;
     position: relative;
 
   }
