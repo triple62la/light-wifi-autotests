@@ -1,10 +1,11 @@
 <template>
   <transition name="fade">
     <nav v-show="navBarOpened" class="nav">
-      <router-link class="nav__link nav__link_active" to="">Мониторинг</router-link>
-      <router-link class="nav__link" to="">Внеочередные проверки</router-link>
-      <router-link class="nav__link" to="">История проверок</router-link>
-      <router-link class="nav__link" to="">Пользователи</router-link>
+      <nav-link  v-for="(link, index) in links"
+                 :link-data="link"
+                  :class="{'nav__link_active':link.name === activeLinkName}"
+                 @click="linkClick(link.name, link.route)"
+      >{{ link.name }}</nav-link>
     </nav>
   </transition>
 </template>
@@ -12,47 +13,71 @@
 <script>
 import {mapState} from "pinia";
 import {useRootStore} from "@/stores/rootStore";
+import NavLink from "@/components/NavLink";
 
 export default {
   name: "NavBar",
+  components: {NavLink},
+  props:["activeLinkName"],
   computed:{
     ...mapState(useRootStore, ["navBarOpened"])
-  }
+  },
+  data(){
+    return{
+      links:[
+        {
+          name:"Мониторинг",
+          route:"/",
+          isActive:false,
+
+        },
+        {
+          name:"Внеочередные проверки",
+          route:"/extras",
+          isActive:false,
+
+        },
+        {
+          name:"История проверок",
+          route:"/history",
+          isActive:false,
+
+        },
+        {
+          name:"Пользователи",
+          route:"/users",
+          isActive:false,
+
+        },
+      ]
+    }
+  },
+  methods:{
+    changeActiveLink(linkName){
+      for (const link of this.links){
+        linkName === link.name? link.isActive=true : link.isActive=false
+      }
+    },
+    linkClick(name, route){
+        this.changeActiveLink(name)
+        this.$router.push(route)
+    }
+  },
+
 }
 
 </script>
 
 <style scoped>
 .nav{
-
-
   background-color: #242424;
   display: flex;
   flex-direction: column;
 
-}
-.nav__link{
-  box-sizing: border-box;
-  min-height: 35px;
-  width: 230px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 17px;
-  text-align: center;
-  color: white;
-  text-decoration: none;
-  padding: 15px 10px;
 
 
 }
 
-.nav__link:hover{
-  opacity: 0.6;
-  background-color: #2d2d2d;
-}
-.nav__link_active{
-  background-color: #2d2d2d;
-}
 .fade-enter-active{
   transition: opacity 0.5s ease;
 }

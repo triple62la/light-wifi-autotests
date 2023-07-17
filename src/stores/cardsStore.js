@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import {getCards} from "@/api/mock";
+import {apiGetCards} from "@/api/mock";
 export const useCardsStore = defineStore("cards", {
     state: ()=> ({
         items: []
@@ -11,7 +11,7 @@ export const useCardsStore = defineStore("cards", {
     },
     actions:{
         async fetchCards(){
-            const cards =  await getCards()
+            const cards =  await apiGetCards()
             this.items = cards.map(card=>Object.assign(card, {
                 selected:false,
 

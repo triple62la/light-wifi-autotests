@@ -1,20 +1,53 @@
 
 
 <script>
+
+import {required, minLength, maxLength} from "@vuelidate/validators"
+import {useVuelidate} from "@vuelidate/core";
+
+const testCyrilics = (str)=> {
+  const cyrillicPattern = /^[\u0400-\u04FF]+$/;
+  const re = RegExp(cyrillicPattern);
+      for (const el of str) {
+        if (re.test(el)) {
+          return false
+        }
+      }
+  return  true
+}
 export default {
 
+
+
   name: "LoginForm",
+  setup () {
+    return {
+      v$: useVuelidate()
+    }
+  },
   data(){
     return {
-        loginNotValid:true,
-        passwordNotValid:true,
-        loginValue: "",
-        passwordValue: "",
-        loginErrMsg: "",
-        passwordErrMsg:"",
+
+        login: "",
+        password: "",
         btnState:false,
     }
   },
+  validations(){
+    return {
+      login:{
+        required,
+
+
+      },
+      password:{
+        required,
+
+
+      },
+    }
+  },
+
 
   methods:{
     getValidationMsg(evt){
@@ -26,8 +59,22 @@ export default {
       const msg = this.getValidationMsg(evt)
       this[`${evt.target.name}`+"ErrMsg"] = msg
       this[`${evt.target.name}` + "NotValid"] = Boolean(msg)
-      this.btnState = [this.loginNotValid, this.passwordNotValid].every(el=>el===false)
-    }
+    },
+    isFieldEmpty(vModel){
+      return vModel.required.$invalid && vModel.$dirty
+    },
+    hasCyrilics(vModel)  {
+     return  vModel.testCyrilics.$invalid && vModel.$dirty
+    },
+    notRequiredLength(vModel){
+      return (vModel.minLength.$invalid || vModel.maxLength.$invalid) && vModel.$dirty
+    },
+    onSubmit(evt){
+      if (this.v$.$invalid){
+        return
+      }
+      this.$router.push('/')
+    },
   }
 }
 </script>
@@ -35,18 +82,22 @@ export default {
 
 <template>
   <section class="login-section">
-  <form class="login-form" novalidate @submit.prevent="this.$router.push('/')">
+  <form class="login-form" novalidate @submit.prevent="onSubmit" >
     <h2 class="login-form__title">Введите учетные данные:</h2>
-    <input v-model="loginValue" @input="setElementValidation" class="login-form__input" type="text" name="login" id="login"
-           minlength="3" maxlength="30" required pattern="^[a-zA-Z0-9\-]+$" placeholder="Логин"
-           data-error-message="Разрешены только латинские буквы, цифры и спецсимволы"
-    :class="{'login-form__input_invalid':loginNotValid}">
-    <span class="login-form__error login-form__error_login">{{loginErrMsg}}</span>
-    <input v-model="passwordValue" @input="setElementValidation" class="login-form__input" type="password" name="password" id="password"
-           required maxlength="20" placeholder="Пароль"
-           :class="{'login-form__input_invalid':passwordNotValid}">
-    <span class="login-form__error login-form__error_password">{{passwordErrMsg}}</span>
-    <button type="submit" class="" :class="{'login-form__button':true,'login-form__button_disabled':!btnState}">вход</button>
+    <input v-model.trim="v$.login.$model"
+           :class="['login-form__input',{'login-form__input_invalid':v$.login.$invalid && v$.login.$dirty}]"
+           type="text" name="login" id="login"
+           placeholder="Логин"
+           >
+      <span v-if="isFieldEmpty(v$.login)" class="login-form__error login-form__error_login" >Заполните это поле</span>
+    <input v-model.trim="v$.password.$model"
+           @input="setElementValidation"
+           :class="['login-form__input',{'login-form__input_invalid':v$.password.$invalid && v$.password.$dirty}]"
+           type="password" name="password" id="password"
+            placeholder="Пароль"
+           >
+    <span v-if="isFieldEmpty(v$.password)" class="login-form__error login-form__error_login" >Заполните это поле</span>
+    <button type="submit" class="" :class="['login-form__button',{'login-form__button_disabled':v$.$invalid}]">вход</button>
   </form>
   </section>
 </template>
@@ -59,16 +110,16 @@ export default {
   .login-form{
     margin: auto;
     width: 668px;
-    height: 316px;
+
     border: 2px solid #EC7D18;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 50px 0;
 
   }
   .login-form__title{
-    font-family: Inter;
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
@@ -78,7 +129,7 @@ export default {
     padding-bottom: 24px;
   }
   .login-form__input{
-    margin: 0 auto;
+    margin: 10px auto;
     width: 350px;
     height: 41px;
     background-color: transparent;
@@ -94,6 +145,7 @@ export default {
   .login-form__input::placeholder{
     color: gray;
     padding-left: 10px;
+    font-size: 14px;
   }
   .login-form__input_invalid{
     border-bottom: 2px solid #F06957;

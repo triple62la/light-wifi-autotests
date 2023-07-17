@@ -4,6 +4,8 @@ const cards = [
         title:"ОГО",
         status:"",
         connection:"",
+        portal:"",
+        authorization:"",
         internet:"",
         lastCheck:new Date(),
         disabled:false,
@@ -14,6 +16,8 @@ const cards = [
         title:"АГА",
         status:"",
         connection:"",
+        portal:"",
+        authorization:"",
         internet:"",
         lastCheck:new Date(),
         disabled:false,
@@ -24,6 +28,8 @@ const cards = [
         title:"ЕГЕ",
         status:"",
         connection:"",
+        portal:"",
+        authorization:"",
         internet:"",
         lastCheck:new Date(),
         disabled:false,
@@ -34,6 +40,8 @@ const cards = [
         title:"УГУ",
         status:"",
         connection:"",
+        portal:"",
+        authorization:"",
         internet:"",
         lastCheck: new Date(),
         disabled:false,
@@ -44,6 +52,8 @@ const cards = [
         title:"ОГО",
         status:"",
         connection:"",
+        portal:"",
+        authorization:"",
         internet:"",
         lastCheck:new Date(),
         disabled:false,
@@ -54,6 +64,8 @@ const cards = [
         title:"АГА",
         status:"",
         connection:"",
+        portal:"",
+        authorization:"",
         internet:"",
         lastCheck:new Date(),
         disabled:false,
@@ -64,6 +76,8 @@ const cards = [
         title:"ЕГЕ",
         status:"",
         connection:"",
+        portal:"",
+        authorization:"",
         internet:"",
         lastCheck:new Date(),
         disabled:false,
@@ -74,14 +88,210 @@ const cards = [
         title:"ластецкая",
         status:"",
         connection:"",
+        portal:"",
+        authorization:"",
         internet:"",
         lastCheck: new Date(),
         disabled:false,
         forcedQueueIndex:0,
-    }
+    },
+    {
+        id:crypto.randomUUID(),
+        title:"ОГО",
+        status:"",
+        connection:"",
+        portal:"",
+        authorization:"",
+        internet:"",
+        lastCheck:new Date(),
+        disabled:false,
+        forcedQueueIndex:0,
+    },
+    {
+        id:crypto.randomUUID(),
+        title:"АГА",
+        status:"inprogress",
+        connection:"inprogress",
+        portal:"inprogress",
+        authorization:"inprogress",
+        internet:"inprogress",
+        lastCheck:new Date(),
+        disabled:false,
+        forcedQueueIndex:0,
+    },
 ]
 
-function getCards(){
+const users = [
+    {
+        id:crypto.randomUUID(),
+        name:"Васян",
+        lastName:"Копченый",
+        patronymic : "",
+        login:"whosYourDaddy",
+        role:"user"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Оран",
+        lastName:"Лохматов",
+        patronymic : "Гутанович",
+        login:"monkeyBuisness",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Пыпыт",
+        lastName:"Хулемяувов",
+        patronymic : "Пыпытович",
+        login:"imapussy",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Васян",
+        lastName:"Копченый",
+        patronymic : "",
+        login:"whosYourDaddy",
+        role:"user"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Оран",
+        lastName:"Лохматов",
+        patronymic : "Гутанович",
+        login:"monkeyBuisness",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Пыпыт",
+        lastName:"Хулемяувов",
+        patronymic : "Пыпытович",
+        login:"imapussy",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Васян",
+        lastName:"Копченый",
+        patronymic : "",
+        login:"whosYourDaddy",
+        role:"user"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Оран",
+        lastName:"Лохматов",
+        patronymic : "Гутанович",
+        login:"monkeyBuisness",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Пыпыт",
+        lastName:"Хулемяувов",
+        patronymic : "Пыпытович",
+        login:"imapussy",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Васян",
+        lastName:"Копченый",
+        patronymic : "",
+        login:"whosYourDaddy",
+        role:"user"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Оран",
+        lastName:"Лохматов",
+        patronymic : "Гутанович",
+        login:"monkeyBuisness",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Пыпыт",
+        lastName:"Хулемяувов",
+        patronymic : "Пыпытович",
+        login:"imapussy",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Васян",
+        lastName:"Копченый",
+        patronymic : "",
+        login:"whosYourDaddy",
+        role:"user"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Оран",
+        lastName:"Лохматов",
+        patronymic : "Гутанович",
+        login:"monkeyBuisness",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Пыпыт",
+        lastName:"Хулемяувов",
+        patronymic : "Пыпытович",
+        login:"imapussy",
+        role:"admin"
+    }, {
+        id:crypto.randomUUID(),
+        name:"Васян",
+        lastName:"Копченый",
+        patronymic : "",
+        login:"whosYourDaddy",
+        role:"user"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Оран",
+        lastName:"Лохматов",
+        patronymic : "Гутанович",
+        login:"monkeyBuisness",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Пыпыт",
+        lastName:"Хулемяувов",
+        patronymic : "Пыпытович",
+        login:"imapussy",
+        role:"admin"
+    }, {
+        id:crypto.randomUUID(),
+        name:"Васян",
+        lastName:"Копченый",
+        patronymic : "",
+        login:"whosYourDaddy",
+        role:"user"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Оран",
+        lastName:"Лохматов",
+        patronymic : "Гутанович",
+        login:"monkeyBuisness",
+        role:"admin"
+    },
+    {
+        id:crypto.randomUUID(),
+        name:"Пыпыт",
+        lastName:"Хулемяувов",
+        patronymic : "Пыпытович",
+        login:"imapussy",
+        role:"admin"
+    },
+]
+
+
+function apiGetCards(){
     return new Promise((resolve,reject)=>{
         setTimeout(()=>resolve(cards), 150)
     })
@@ -184,6 +394,11 @@ function apiCancelForced(cardId){
         }, 250)
     })
 }
+function apiGetUsers(){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>resolve(users), 400)
+    })
+}
 
 
-export {cards, getCards, apiSendDisabled, apiSendEnabled, apiSendForced, apiCancelForced}
+export {cards, apiGetCards, apiSendDisabled, apiSendEnabled, apiSendForced, apiCancelForced, apiGetUsers}

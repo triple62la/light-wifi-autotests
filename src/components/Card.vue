@@ -71,11 +71,7 @@ export default {
       let statusClasses = this.cardData.status? "card "  + "card_type_" + this.cardData.status : "card"
       return  this.selected? statusClasses + " card_selected": statusClasses
     },
-    getConnClass(){
-      return this.cardData.connection?
-          "card__subtitle-icon " + "card__subtitle-icon_type_" + this.cardData.connection
-          : "card__subtitle-icon"
-    },
+
     getInternetClass(){
       return this.cardData.internet?
           "card__subtitle-icon " + "card__subtitle-icon_type_" + this.cardData.internet
@@ -97,6 +93,11 @@ export default {
 
   methods:{
 
+    getItemStatusClass(status){
+      return status?
+          "card__subtitle-icon " + "card__subtitle-icon_type_" + status
+          : "card__subtitle-icon"
+    },
     openSettings(){
       console.log("вызван метод openSettings")
     },
@@ -112,7 +113,7 @@ export default {
         items: this.contextMenu
       })
       this.cardData.selected = true
-      document.addEventListener("click", this.contextClose, {once:true})
+
     },
     setDisabled(){
       apiSendDisabled(this.cardData.id)
@@ -145,6 +146,9 @@ export default {
             this.cardData.status = ""
             this.cardData.forcedQueueIndex = 0
           })
+    },
+    test(){
+      this.cardData.internet = "success"
     }
   },
 }
@@ -152,15 +156,17 @@ export default {
 
 
 <template>
-  <div @click.right.prevent.stop="openContext" class="card" :class="[{
+  <div @click="test" @click.right.prevent.stop="openContext" class="card" :class="[{
     selected:this.cardData.selected,
     disabled: cardData.disabled},
     cardData.status, ]">
     <h3 class="card__title">{{this.cardData.title}}</h3>
     <img v-if="!cardData.disabled" class="card__icon" src="../assets/images/icons/free-icon-wifi-router-128px.png" alt="иконка карточки">
     <img v-else class="card__icon" src="../assets/images/icons/x-button.png" alt="отключено">
-    <p v-show="!cardData.disabled" class="card__subtitle">Подключение<span  :class="getConnClass"></span></p>
-    <p v-show="!cardData.disabled" class="card__subtitle">Интернет<span :class="getInternetClass"></span></p>
+    <p v-show="!cardData.disabled" class="card__subtitle">Подключение<span  :class="getItemStatusClass(this.cardData.connection)"></span></p>
+    <p v-show="!cardData.disabled" class="card__subtitle">Портал<span :class="getItemStatusClass(this.cardData.portal)"></span></p>
+    <p v-show="!cardData.disabled" class="card__subtitle">Авторизация<span :class="getItemStatusClass(this.cardData.authorization)"></span></p>
+    <p v-show="!cardData.disabled" class="card__subtitle">Интернет<span :class="getItemStatusClass(this.cardData.internet)"></span></p>
     <p v-show="!cardData.disabled" class="card__subtitle card__subtitle_type_lastcheck">{{timeFormat}}</p>
     <p v-show="cardData.forcedQueueIndex" class="card__index">{{cardData.forcedQueueIndex}}</p>
   </div>
@@ -172,7 +178,7 @@ export default {
 .card{
   font-family: Arial sans-serif;
   width: 235px;
-  height: 171px;
+  min-height: 220px;
   border: 1px #EC7D18 solid;
   border-radius: 8px;
   display: flex;

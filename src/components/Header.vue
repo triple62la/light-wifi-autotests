@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header__app-title-wrapper">
-      <div v-show="showBurger" @click="navBarToggleOpened" class="header-burger-btn"></div>
+      <div v-show="showBurger" @click="navBarToggleOpened" :class="[`header__burger-btn`, {'header__burger-btn_active': this.burgerBtnOpened}]"></div>
       <h1 class="header__app-title">Light WiFi Sanity</h1>
     </div>
     <div class="header__container">
@@ -29,8 +29,8 @@ export default {
     ...mapState(useRootStore, ["burgerBtnOpened"])
   },
   methods: {
-    setTitle(){
-      this.$route
+    burgerBtnClick(){
+
     },
     ...mapActions(useRootStore,["navBarToggleOpened"])
   }
@@ -63,7 +63,7 @@ export default {
     align-items: center;
 
   }
-  .header-burger-btn{
+  .header__burger-btn{
     background-image: url("../assets/images/icons/burger-icon.svg");
     background-position: center;
     background-repeat: no-repeat;
@@ -73,7 +73,10 @@ export default {
     background-color: #333;
     border-radius: 50%;
   }
-  .header-burger-btn:hover{
+  .header__burger-btn_active{
+    background-color: #949494;
+  }
+  .header__burger-btn:hover{
     opacity: 0.6;
     cursor: pointer;
   }
@@ -89,6 +92,22 @@ export default {
     padding-left: 10px;
 
   }
+  @media (max-width: 1024px) {
+    .header__app-title{
+
+      font-size: 24px;
+      line-height: 22px;
+      min-width: 200px;
+      padding-left: 10px;
+    }
+  }
+  @media (max-width: 800px) {
+    .header__app-title{
+
+      display: none;
+    }
+  }
+
   .header__page-title{
     margin: 0 auto;
     font-size: 26px;
@@ -96,5 +115,13 @@ export default {
     line-height: 29px;
     color: white;
     padding-top: 35px;
+  }
+  @media (max-width: 1024px) {
+    .header__page-title{
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 22px;
+      padding-top: 40px;
+    }
   }
 </style>

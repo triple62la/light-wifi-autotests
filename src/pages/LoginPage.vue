@@ -1,19 +1,18 @@
 <template>
 
 
-  <Header :title="this.pageTitle" :show-profile="false"/>
-  <LoginForm/>
-  <Footer/>
+  <AppLayout>
+    <LoginForm/>
+  </AppLayout>
 
 </template>
 
 <script>
-import Header from "@/components/Header";
+import AppLayout from "@/pages/AppLayout";
 import LoginForm from "@/components/LoginForm";
-import Footer from "@/components/Footer";
 export default {
   name: "LoginPage",
-  components: {Footer, Header,  LoginForm},
+  components: {AppLayout, LoginForm },
   data(){
     return {
       pageTitle: "Страница авторизации"

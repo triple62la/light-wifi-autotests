@@ -1,9 +1,9 @@
 <template>
   <Header :title="this.pageTitle" :show-profile="true" :show-burger="true"/>
-  <main class="main" @click="this.contextStore.close" @click.right.prevent="this.contextStore.close" >
-    <NavBar/>
+  <Main>
+    <NavBar active-link-name="Мониторинг"/>
     <MonitoringSection/>
-  </main>
+  </Main>
   <Footer/>
 </template>
 
@@ -15,9 +15,10 @@ import NavBar from "@/components/NavBar";
 import MonitoringSection from "@/components/MonitoringSection";
 import {mapStores} from "pinia/dist/pinia";
 import {useContextStore} from "@/stores/contextStore";
+import Main from "@/components/Main";
 export default {
   name: "MainPage",
-  components: {MonitoringSection, NavBar, LoginForm,Header,Footer},
+  components: {Main, MonitoringSection, NavBar, Header,Footer},
   methods:{
   },
   data(){
@@ -32,9 +33,6 @@ export default {
 }
 </script>
 
-<style scoped>
-  .main{
-    display: flex;
-    flex: 1 0 auto;
-  }
+<style >
+
 </style>
