@@ -2,7 +2,7 @@
 <script>
 import Card from "@/components/Card";
 import CardContext from "@/components/ContextMenu";
-import {mapState, mapActions, mapStores} from 'pinia'
+import {mapStores} from 'pinia'
 import {useCardsStore} from "@/stores/cardsStore";
 import {useContextStore} from "@/stores/contextStore";
 
@@ -49,7 +49,7 @@ export default {
     justify-content: center;
     flex-wrap: wrap;
     padding: 25px;
-   box-sizing: border-box;
+    box-sizing: border-box;
     gap: 25px;
     max-width: 100%;
 

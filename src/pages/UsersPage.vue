@@ -1,6 +1,8 @@
 <template>
-  <AppLayout :title="pageTitle"
-             :show-nav="true"
+  <AppLayout
+      class="content"
+      :title="pageTitle"
+      :show-nav="true"
   >
     <UsersTable/>
   </AppLayout>
@@ -16,11 +18,13 @@ export default {
     return {
       pageTitle:'Пользователи',
     }
-  }
+  },
 
 }
 </script>
 
 <style scoped>
-
+  .content{
+    position: relative;
+  }
 </style>

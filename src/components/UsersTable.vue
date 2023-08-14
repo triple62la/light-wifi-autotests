@@ -4,28 +4,65 @@
 import {mapActions, mapState} from "pinia";
 import {useUsersStore} from "@/stores/usersStore";
 import UsersTableRow from "@/components/UsersTableRow"
-
+import Dialog from "@/components/Dialog";
+import {apiDeleteUser} from "@/api/mock";
 
 export default {
   name: "UsersTable",
-  components: {UsersTableRow,},
-
-
+  components: {Dialog, UsersTableRow},
+  data(){
+    return {
+      delConfirmationMsg:'Вы уверены, что хотите удалить выбранного пользователя?',
+      isDialogShown:false,
+    }
+  },
   methods:{
-    ...mapActions(useUsersStore, ['deleteUser', 'addUser', 'selectUser', 'fetchUsers'])
+
+    ...mapActions(useUsersStore, ['deleteUser', 'addUser',  'fetchUsers']),
+
+    onUserClick(user){
+
+      const selected = this.users.find(user=>user.selected)
+      if (selected && selected.id === user.id) {
+        return
+      }
+      else if (selected && selected.id !== user.id){
+        selected.unselect(this.toggleBtnsBar)
+        user.select()
+      } else {
+        user.select()
+      }
+    },
+    showDialog(){
+
+      this.isDialogShown=true
+    },
+    delSelectedUser(){
+      let selectedUser, selectedIndex;
+        for (const [index,user]  of this.users.entries()) {
+          if (user.selected){
+            selectedUser  = user
+            selectedIndex = index
+            apiDeleteUser(selectedUser.id)
+                .then(()=>{
+                  selectedUser.unselect()
+                  this.users.splice(selectedIndex, 1)
+                  this.isDialogShown=false
+                })
+          }
+        }
+    }
   },
 
   computed:{
-    ...mapState(useUsersStore, ['users'])
+    ...mapState(useUsersStore, ['users', 'editBtnDisabled', 'deleteBtnDisabled']),
   },
-  created: function () {
-     this.fetchUsers()
 
+  created() {
+    this.fetchUsers()
   }
-
 }
 </script>
-
 
 
 <template>
@@ -39,10 +76,21 @@ export default {
       </tr>
       </thead>
       <tbody class="users-table__body">
-        <UsersTableRow  v-for="(user,index) in this.users" :key="user.id" :table-index="index+1" :user-data="user" />
+        <UsersTableRow @click.stop="onUserClick(user)" v-for="(user,index) in this.users" :key="user.id" :table-index="index+1" :user-data="user" />
       </tbody>
+    <div :class= '["btns-bar"]'>
+      <button @click.stop="" class="btns-bar__btn">
+        <img   class="btns-bar__btn-image" src="../assets/images/icons/icon-plus-white.svg" title="Добавить пользователя" alt="Добавить"></button>
+      <button @click.stop="" :class='["btns-bar__btn", {"disabled": this.editBtnDisabled}]'>
+        <img class="btns-bar__btn-image" src="../assets/images/icons/icon-edit-white.svg" title="Редактировать пользователя" alt="Редактировать"></button>
+      <button @click.stop="showDialog" :class='["btns-bar__btn", {"disabled": this.deleteBtnDisabled}]' >
+        <img class="btns-bar__btn-image" src="../assets/images/icons/icon-trash-white.svg" title="Удалить пользователя" alt="Удалить"></button>
+    </div>
   </table>
-
+  <Dialog @decline="this.isDialogShown=false"
+          @accept="delSelectedUser"
+          :is-shown="isDialogShown"
+          :title="delConfirmationMsg"/>
 </template>
 
 
@@ -56,7 +104,6 @@ export default {
     color: white;
     border-collapse: collapse;
     vertical-align: middle;
-
 
   }
   .users-table__head{
@@ -87,6 +134,7 @@ export default {
     padding: 0 20px;
     width: 100%;
     max-width: 700px;
+    box-sizing: border-box;
 
   }
   .users-table__row_light{
@@ -115,6 +163,44 @@ export default {
     width: 20%;
   }
 
+  .btns-bar{
+    display: flex;
+    justify-content: right;
+    padding: 8px 30px;
+    column-gap: 20px;
+    max-height: 51px;
+    transition: max-height 0.2s ease-in-out, padding 0.2s ease-in-out;
+  }
+  .btns-bar_hidden{
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    /*transition: max-height 0.2s ease-in-out, padding 0.2s ease-in-out;*/
+  }
+  .btns-bar__btn{
+    display: flex;
+    height: 35px;
+    background-color: #EC7D18;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: Inter, Arial sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+  }
+  .btns-bar__btn:hover{
+    opacity: 0.6;
+  }
+
+  .btns-bar__btn-image{
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    object-position: center;
+  }
 
 
 </style>

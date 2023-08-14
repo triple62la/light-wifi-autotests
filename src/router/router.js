@@ -4,7 +4,7 @@ import LoginPage from "@/pages/LoginPage";
 import MainPage from "@/pages/MainPage";
 import NotFound from "@/pages/NotFound";
 import AppLayout from "@/pages/AppLayout";
-import Users from "@/pages/Users";
+import Users from "@/pages/UsersPage";
 const routes = [
     {
         path: "/",

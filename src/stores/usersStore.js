@@ -4,23 +4,43 @@ import {apiGetUsers} from "@/api/mock";
 
 export const useUsersStore = defineStore("users", {
     state:()=>({
-        users:[],
+        usersList:[],
+        editBtnDisabled: true,
+        deleteBtnDisabled: true,
     }),
+    getters:{
+        users(state){
+            return state.usersList
+        }
+    },
     actions:{
-        selectUser(id){
-            for (const user of users){
-                user.selected = user.id === id;
-            }
+        toggleBtns(){
+            this.editBtnDisabled = !this.editBtnDisabled
+            this.deleteBtnDisabled = !this.deleteBtnDisabled
         },
         deleteUser(id){
-            const index = users.findIndex(user=>user.id === id)
-            users.splice(index, 1)
+            const index = usersList.findIndex(user=>user.id === id)
+            usersList.splice(index, 1)
         },
         addUser(obj){
-            users.push(obj)
+            usersList.push(obj)
         },
         async fetchUsers(){
-           this.users = await apiGetUsers()
+            this.usersList =  await apiGetUsers()
+            this.usersList.forEach(user=>{
+                user.unselect = ()=>{
+                    this.toggleBtns()
+                    user.selected = false
+                    document.removeEventListener("click", user.unselect, {once:true})
+
+                }
+                user.select = ()=>{
+                    this.toggleBtns()
+                    user.selected = true
+                    document.addEventListener("click", user.unselect, {once:true})
+                }
+            })
+
         }
     }
 })

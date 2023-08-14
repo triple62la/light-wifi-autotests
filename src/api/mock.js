@@ -400,5 +400,11 @@ function apiGetUsers(){
     })
 }
 
+function apiDeleteUser(userID){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>resolve(users), 400)
+    })
+}
 
-export {cards, apiGetCards, apiSendDisabled, apiSendEnabled, apiSendForced, apiCancelForced, apiGetUsers}
+
+export {cards, apiGetCards, apiSendDisabled, apiSendEnabled, apiSendForced, apiCancelForced, apiGetUsers, apiDeleteUser}

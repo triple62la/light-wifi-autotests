@@ -32,6 +32,10 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style >
+  .disabled{
+    background-color: #949494 !important;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 </style>

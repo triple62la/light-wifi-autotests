@@ -14,7 +14,6 @@ export const useCardsStore = defineStore("cards", {
             const cards =  await apiGetCards()
             this.items = cards.map(card=>Object.assign(card, {
                 selected:false,
-
                 }))
         },
 
