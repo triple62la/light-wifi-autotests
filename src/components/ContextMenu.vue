@@ -14,7 +14,6 @@ export default {
   computed:{
     computedStyles(){
       if (this.x && this.y){
-        console.log(window.screen.width,document.documentElement.clientWidth, this.x )
         return {
           top:`${this.y+this.items.length*42>document.documentElement.clientWidth? //делаем так чтобы контекстное меню не вылезало за пределы экрана
               this.y - this.items.length*42 - 2 :this.y + 2}px`,

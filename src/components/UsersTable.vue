@@ -6,14 +6,18 @@ import {useUsersStore} from "@/stores/usersStore";
 import UsersTableRow from "@/components/UsersTableRow"
 import Dialog from "@/components/Dialog";
 import {apiDeleteUser} from "@/api/mock";
+import Sidepage from "@/components/Sidepage";
+import EditUserForm from "@/components/EditUserForm";
 
 export default {
   name: "UsersTable",
-  components: {Dialog, UsersTableRow},
+  components: {Sidepage, Dialog, UsersTableRow, EditUserForm},
   data(){
     return {
       delConfirmationMsg:'Вы уверены, что хотите удалить выбранного пользователя?',
       isDialogShown:false,
+      isEditSidepageShown:false,
+      selectedUser:{}
     }
   },
   methods:{
@@ -29,8 +33,10 @@ export default {
       else if (selected && selected.id !== user.id){
         selected.unselect(this.toggleBtnsBar)
         user.select()
+        this.selectedUser = user
       } else {
         user.select()
+        this.selectedUser = user
       }
     },
     showDialog(){
@@ -81,7 +87,7 @@ export default {
     <div :class= '["btns-bar"]'>
       <button @click.stop="" class="btns-bar__btn">
         <img   class="btns-bar__btn-image" src="../assets/images/icons/icon-plus-white.svg" title="Добавить пользователя" alt="Добавить"></button>
-      <button @click.stop="" :class='["btns-bar__btn", {"disabled": this.editBtnDisabled}]'>
+      <button @click.stop="isEditSidepageShown=true" :class='["btns-bar__btn", {"disabled": this.editBtnDisabled}]'>
         <img class="btns-bar__btn-image" src="../assets/images/icons/icon-edit-white.svg" title="Редактировать пользователя" alt="Редактировать"></button>
       <button @click.stop="showDialog" :class='["btns-bar__btn", {"disabled": this.deleteBtnDisabled}]' >
         <img class="btns-bar__btn-image" src="../assets/images/icons/icon-trash-white.svg" title="Удалить пользователя" alt="Удалить"></button>
@@ -91,6 +97,9 @@ export default {
           @accept="delSelectedUser"
           :is-shown="isDialogShown"
           :title="delConfirmationMsg"/>
+  <Sidepage :is-shown="isEditSidepageShown" @close-sidepage="isEditSidepageShown=false">
+    <EditUserForm :user-props=""/>
+  </Sidepage>
 </template>
 
 

@@ -158,7 +158,7 @@ export default {
 <template>
   <div @click="test" @click.right.prevent.stop="openContext" class="card" :class="[{
     selected:this.cardData.selected,
-    disabled: cardData.disabled},
+    disabled_card: cardData.disabled},
     cardData.status, ]">
     <h3 class="card__title">{{this.cardData.title}}</h3>
     <img v-if="!cardData.disabled" class="card__icon" src="../assets/images/icons/free-icon-wifi-router-128px.png" alt="иконка карточки">
@@ -196,7 +196,7 @@ export default {
 .inprogress{
   background-color: #EC7D1826;
 }
-.disabled{
+.disabled_card{
   background-color: #BABABA8C;
   border: 1px #C6C0BC solid;
 }

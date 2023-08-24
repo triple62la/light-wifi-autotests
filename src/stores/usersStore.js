@@ -11,7 +11,11 @@ export const useUsersStore = defineStore("users", {
     getters:{
         users(state){
             return state.usersList
+        },
+        selectedUser(){
+
         }
+
     },
     actions:{
         toggleBtns(){
@@ -32,7 +36,7 @@ export const useUsersStore = defineStore("users", {
                     this.toggleBtns()
                     user.selected = false
                     document.removeEventListener("click", user.unselect, {once:true})
-
+                    //TODO делаем геттер selected User
                 }
                 user.select = ()=>{
                     this.toggleBtns()

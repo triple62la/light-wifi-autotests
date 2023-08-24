@@ -71,15 +71,16 @@ export default {
 </template>
 
 
-<style scoped>
+<style>
 .popup__overlay{
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
   display: flex;
+  transition: all 3s ease;
 }
 .popup{
   margin: auto;

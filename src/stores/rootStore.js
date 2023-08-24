@@ -4,6 +4,10 @@ export const useRootStore = defineStore("root", {
     state:()=>({
         burgerBtnOpened:true,
         navBarOpened:true,
+        userRoles:[
+            {value:"user",name:"Пользователь"},
+            {value:"admin",name:"Администратор"}
+        ],
     }),
     getters:{
 

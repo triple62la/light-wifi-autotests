@@ -1,14 +1,4 @@
-<template>
-  <transition name="fade">
-    <nav v-show="navBarOpened" class="nav">
-      <nav-link  v-for="(link, index) in links"
-                 :link-data="link"
-                  :class="{'nav__link_active':link.name === activeLinkName}"
-                 @click="linkClick(link.name, link.route)"
-      >{{ link.name }}</nav-link>
-    </nav>
-  </transition>
-</template>
+
 
 <script>
 import {mapState} from "pinia";
@@ -68,27 +58,41 @@ export default {
 
 </script>
 
+
+<template>
+  <Transition name="grow">
+    <nav v-if="navBarOpened" class="nav">
+      <nav-link  v-for="(link, index) in links"
+                 :link-data="link"
+                 :class="{'nav__link_active':link.name === activeLinkName}"
+                 @click="linkClick(link.name, link.route)"
+      >{{ link.name }}</nav-link>
+    </nav>
+  </Transition>
+</template>
+
+
 <style scoped>
 .nav{
   background-color: #242424;
   display: flex;
   flex-direction: column;
-
-
-
 }
 
-.fade-enter-active{
-  transition: opacity 0.5s ease;
+.grow-enter-active{
+  animation: grow 0.2s;
 }
-.fade-leave-active {
-  transition: opacity 0.5s ease;
+.grow-leave-active {
+  animation: grow 0.2s  reverse;
+}
+@keyframes grow {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 230px;
+  }
 }
 
-.fade-enter-from{
-  opacity: 0;
-}
-.fade-leave-to {
-  opacity: 0;
-}
+
 </style>
