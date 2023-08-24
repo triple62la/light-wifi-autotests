@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import {apiGetUsers} from "@/api/mock";
+import {apiDeleteUser, apiEditUser, apiGetUsers} from "@/api/mock";
 
 
 export const useUsersStore = defineStore("users", {
@@ -7,13 +7,14 @@ export const useUsersStore = defineStore("users", {
         usersList:[],
         editBtnDisabled: true,
         deleteBtnDisabled: true,
+        selectedUser:{}
     }),
     getters:{
         users(state){
             return state.usersList
         },
-        selectedUser(){
-
+        getSelectedUser(state){
+            return state.selectedUser
         }
 
     },
@@ -22,9 +23,18 @@ export const useUsersStore = defineStore("users", {
             this.editBtnDisabled = !this.editBtnDisabled
             this.deleteBtnDisabled = !this.deleteBtnDisabled
         },
-        deleteUser(id){
-            const index = usersList.findIndex(user=>user.id === id)
-            usersList.splice(index, 1)
+        async deleteSelectedUser(){
+            const id = this.selectedUser.id
+            await apiDeleteUser(id)
+            this.selectedUser.unselect()
+            const index = this.usersList.findIndex(user=>user.id === id)
+            this.usersList.splice(index, 1)
+        },
+        async editUser(newData){
+            console.log(newData)
+            await apiEditUser(newData)
+            const user  = this.usersList.find(user=>user.id === newData.id)
+            Object.assign(user, newData)
         },
         addUser(obj){
             usersList.push(obj)
@@ -36,11 +46,13 @@ export const useUsersStore = defineStore("users", {
                     this.toggleBtns()
                     user.selected = false
                     document.removeEventListener("click", user.unselect, {once:true})
-                    //TODO делаем геттер selected User
+                    this.selectedUser = {}
+
                 }
                 user.select = ()=>{
                     this.toggleBtns()
                     user.selected = true
+                    this.selectedUser = user
                     document.addEventListener("click", user.unselect, {once:true})
                 }
             })

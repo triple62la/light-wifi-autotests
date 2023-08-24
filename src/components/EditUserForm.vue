@@ -4,6 +4,7 @@
 import CustomSelect from "@/components/UI/CustomSelect";
 import {useRootStore} from "@/stores/rootStore";
 import {mapStores} from "pinia";
+import {useUsersStore} from "@/stores/usersStore";
 export default {
   name: "EditUserForm",
   components: {CustomSelect},
@@ -20,8 +21,13 @@ export default {
       }
     }
   },
+    methods:{
+      onSubmitClick(){
+          this.usersStore.editUser(this.userData)
+      }
+    },
   computed:{
-    ...mapStores(useRootStore),
+    ...mapStores(useRootStore, useUsersStore),
 
 
   }
@@ -33,33 +39,33 @@ export default {
     <fieldset class="form__fieldset" >
       <div class="form__item">
         <label for="id" class="form__item-caption">Id</label>
-        <input class="form__item-input" type="text" name="id" id="id" autocomplete="off">
+        <input v-model="userData.id" class="form__item-input form__item-input_type_id" type="text" name="id" id="id" autocomplete="off" disabled>
       </div>
       <div class="form__item">
         <label class="form__item-caption">Имя</label>
-        <input class="form__item-input" type="text" name="name" id="name" autocomplete="off">
+        <input v-model="userData.name" class="form__item-input" type="text" name="name" id="name" autocomplete="off">
       </div>
       <div class="form__item">
         <label class="form__item-caption">Фамилия</label>
-        <input class="form__item-input" type="text" name="last-name" id="last-name" autocomplete="off">
+        <input v-model="userData.lastName" class="form__item-input" type="text" name="last-name" id="last-name" autocomplete="off">
       </div>
       <div class="form__item">
         <label class="form__item-caption">Отчество</label>
-        <input class="form__item-input" type="text" name="patronymic" id="patronymic" autocomplete="off">
+        <input v-model="userData.patronymic" class="form__item-input" type="text" name="patronymic" id="patronymic" autocomplete="off">
       </div>
       <div class="form__item">
         <label class="form__item-caption">Логин</label>
-        <input class="form__item-input" type="text" name="login" id="login" autocomplete="off">
+        <input v-model="userData.login" class="form__item-input" type="text" name="login" id="login" autocomplete="off">
       </div>
       <div class="form__item">
         <label class="form__item-caption">Роль</label>
        <CustomSelect :options="this.rootStore.userRoles"
-                     @selectedValue="role=>this.userData.role = role"
+                     v-model:selectedValue="userData.role"
        />
       </div>
     </fieldset>
     <div class="form__controls">
-      <button @click.stop="$emit('accept')" class="popup__btn" type="submit">Сохранить</button>
+      <button @click.stop="" class="popup__btn" type="submit">Сохранить</button>
     </div>
   </form>
 </template>
@@ -124,6 +130,9 @@ background-color: transparent;
   box-shadow: 0 0 10px 0 inset;
   border-radius: 7px;
   border-bottom: 1px solid white;
+}
+.form__item-input_type_id{
+    font-size:  14px;
 }
 .form__controls{
   padding-top: 40px;

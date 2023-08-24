@@ -22,7 +22,7 @@ export default {
   },
   methods:{
 
-    ...mapActions(useUsersStore, ['deleteUser', 'addUser',  'fetchUsers']),
+    ...mapActions(useUsersStore, ['deleteSelectedUser', 'addUser',  'fetchUsers','editUser']),
 
     onUserClick(user){
 
@@ -44,24 +44,33 @@ export default {
       this.isDialogShown=true
     },
     delSelectedUser(){
-      let selectedUser, selectedIndex;
-        for (const [index,user]  of this.users.entries()) {
-          if (user.selected){
-            selectedUser  = user
-            selectedIndex = index
-            apiDeleteUser(selectedUser.id)
-                .then(()=>{
-                  selectedUser.unselect()
-                  this.users.splice(selectedIndex, 1)
-                  this.isDialogShown=false
-                })
-          }
-        }
+      this.deleteSelectedUser()
+          .then(()=>{
+          })
+          .finally(()=>{
+              this.isDialogShown=false
+          })
+    },
+    saveUserChanges(userData){
+        console.log(userData)
+        this.editUser(userData)
+            .then(()=>{
+
+            })
+            .finally(()=>{
+                this.isEditSidepageShown=false
+            })
     }
   },
 
   computed:{
-    ...mapState(useUsersStore, ['users', 'editBtnDisabled', 'deleteBtnDisabled']),
+    ...mapState(useUsersStore, ['users',
+        'editBtnDisabled',
+        'deleteBtnDisabled',
+        'getSelectedUser',
+        'editUser',
+    ]),
+
   },
 
   created() {
@@ -98,7 +107,7 @@ export default {
           :is-shown="isDialogShown"
           :title="delConfirmationMsg"/>
   <Sidepage :is-shown="isEditSidepageShown" @close-sidepage="isEditSidepageShown=false">
-    <EditUserForm :user-props=""/>
+    <EditUserForm @accept="saveUserChanges" :user-props="this.getSelectedUser"/>
   </Sidepage>
 </template>
 

@@ -5,7 +5,7 @@ import EditUserForm from "@/components/EditUserForm";
 export default {
   name: "Sidepage",
   components: {EditUserForm},
-  emits:["accept", "close-sidepage"],
+  emits:["close-sidepage"],
   props:{
     isShown:{
       type:Boolean,

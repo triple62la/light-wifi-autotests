@@ -6,7 +6,8 @@ export const useRootStore = defineStore("root", {
         navBarOpened:true,
         userRoles:[
             {value:"user",name:"Пользователь"},
-            {value:"admin",name:"Администратор"}
+            {value:"admin",name:"Администратор"},
+            {value:"stand",name:"Cтенд"},
         ],
     }),
     getters:{
