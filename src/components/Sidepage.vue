@@ -28,6 +28,10 @@ export default {
         this.$emit("close-sidepage")
       }
     },
+    sendClose(){
+      this.$emit("close-sidepage")
+      console.log('Emited from Sidepage')
+    }
   }
 }
 </script>
@@ -40,7 +44,7 @@ export default {
         <div v-if="isShown" @click.stop="" :class="['sidepage', ]">
           <h2 class="sidepage__title">{{title}}</h2>
           <button @click="$emit('close-sidepage')" class="sidepage__close-btn" type="button"></button>
-          <slot>
+          <slot @close=sendClose>
 
           </slot>
         </div>

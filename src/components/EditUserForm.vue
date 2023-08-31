@@ -8,10 +8,14 @@ import {useUsersStore} from "@/stores/usersStore";
 export default {
   name: "EditUserForm",
   components: {CustomSelect},
+  emits:['close'],
   props:{
     userProps:{
       type:Object,
       required:true
+    },
+    closeCallback:{
+      type:Function
     }
   },
   data(){
@@ -22,24 +26,26 @@ export default {
     }
   },
     methods:{
-      onSubmitClick(){
+      onSubmit(){
           this.usersStore.editUser(this.userData)
-      }
+              .then(()=>{})
+              .catch((error)=>{alert(error)})
+              .finally(this.closeCallback())
+      },
+
     },
   computed:{
     ...mapStores(useRootStore, useUsersStore),
-
-
   }
 }
 </script>
 
 <template>
-  <form class="form" @submit.prevent="$emit('accept')" autocomplete="off">
+  <form class="form" @submit.prevent="onSubmit" autocomplete="off">
     <fieldset class="form__fieldset" >
       <div class="form__item">
         <label for="id" class="form__item-caption">Id</label>
-        <input v-model="userData.id" class="form__item-input form__item-input_type_id" type="text" name="id" id="id" autocomplete="off" disabled>
+        <input :value="userData.id" class="form__item-input form__item-input_type_id" type="text" name="id" id="id" autocomplete="off"  disabled>
       </div>
       <div class="form__item">
         <label class="form__item-caption">Имя</label>
@@ -65,30 +71,15 @@ export default {
       </div>
     </fieldset>
     <div class="form__controls">
-      <button @click.stop="" class="popup__btn" type="submit">Сохранить</button>
+      <button class="popup__btn" type="submit">Сохранить</button>
     </div>
   </form>
 </template>
 
 
-<style scoped>
+<style>
 
-select {
- /*A reset of styles, including removing the default dropdown arrow*/
-appearance: none;
-/* Additional resets for further consistency*/
-background-color: transparent;
-  border: none;
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
-  box-sizing: border-box;
-  outline: none;
-}
+
 
 
 .form__fieldset{
@@ -131,6 +122,11 @@ background-color: transparent;
   border-radius: 7px;
   border-bottom: 1px solid white;
 }
+.form__item-input_invalid{
+  box-shadow: 0 0 10px 0 inset rgba(240, 105, 87, 0.60);
+  border-radius: 7px;
+  border-bottom: 1px solid rgb(240, 105, 87);
+}
 .form__item-input_type_id{
     font-size:  14px;
 }
@@ -139,29 +135,6 @@ background-color: transparent;
   display: flex;
   justify-content: flex-end;
 }
-.form__select{
-  position: relative;
-  display: inline-block;
-  border-bottom: 2px solid #EC7D18;
-  height: 32px;
-  padding-left: 10px;
-  color: #d0d0d0;
-  font-style: italic;
-  font-weight: 400;
-  font-size:  16px;
-  cursor: pointer;
-  background: url("@/assets/images/icons/down-arrow-icon2.svg") no-repeat  center right;
-}
-/*.form__select::after{*/
-/*  content: "";*/
-/*  width: 10px;*/
-/*  height: 10px;*/
-/*  position: absolute;*/
-/*  right: 0;*/
-/*  top: 0;*/
-/*  color: #EC7D18;*/
-/*  clip-path:polygon(0 0, 50% 100%, 100% 0);*/
-/*  background-color: #EC7D18;*/
-/*  z-index: 2;*/
-/*}*/
+
+
 </style>

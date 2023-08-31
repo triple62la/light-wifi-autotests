@@ -7,15 +7,16 @@ export const useUsersStore = defineStore("users", {
         usersList:[],
         editBtnDisabled: true,
         deleteBtnDisabled: true,
-        selectedUser:{}
+
     }),
     getters:{
         users(state){
             return state.usersList
         },
-        getSelectedUser(state){
-            return state.selectedUser
+        selectedUser(state){
+            return state.usersList.find(user=>user.selected)
         }
+
 
     },
     actions:{
@@ -46,13 +47,10 @@ export const useUsersStore = defineStore("users", {
                     this.toggleBtns()
                     user.selected = false
                     document.removeEventListener("click", user.unselect, {once:true})
-                    this.selectedUser = {}
-
                 }
                 user.select = ()=>{
                     this.toggleBtns()
                     user.selected = true
-                    this.selectedUser = user
                     document.addEventListener("click", user.unselect, {once:true})
                 }
             })

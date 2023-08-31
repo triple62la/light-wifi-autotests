@@ -48,9 +48,9 @@ export default {
 
 <template>
     <div class="wrapper">
-        <div @click="this.isOptionsShown=!this.isOptionsShown" class="heading">
-            <p class="heading__text">{{heading}}</p>
-            <button class="heading__arrow">&lt;</button>
+        <div @click.stop="this.isOptionsShown=!this.isOptionsShown" class="heading">
+            <p class="heading__text">{{heading || "Выберите"}}</p>
+            <div class="heading__arrow" :class="{'heading__arrow_rotate-reversed':this.isOptionsShown}">&lt;</div>
         </div>
         <div v-show="isOptionsShown" class="options" :style="optionsPosition" >
             <p class="options__item" v-for="item in options" :key="item.value" @click.stop="this.onOptionClick(item)">{{item.name}}</p>
@@ -83,13 +83,17 @@ export default {
   }
 
   .heading__arrow{
-    width: 24px;
-    height: 24px;
-  background-image: url("@/assets/images/icons/down-arrow-icon2.svg");
-  background-position: center;
-  background-size: 100% 100%;
+
+    margin: 0;
+    display: inline-block;
+    color: #EC7D18;
     background-color: transparent;
-      border:none;
+    transform: rotate(270deg);
+    font-weight: 600;
+    font-size: 16px;
+    /*transition: transform 0.3s ease;*/
+  }
+  .heading__arrow_rotate-reversed{
     transform: rotate(90deg);
   }
   .options{

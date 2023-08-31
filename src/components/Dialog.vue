@@ -122,4 +122,9 @@ export default {
 .popup__btn:hover{
   opacity: 0.6;
 }
+.popup__btn_disabled{
+  pointer-events: none;
+  background-color: #949494;
+
+}
 </style>
