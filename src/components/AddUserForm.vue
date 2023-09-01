@@ -30,7 +30,7 @@ export default {
   },
   methods:{
     test(){
-      console.log(this.v$.name.$errors)
+      console.log(!this.role, this.v$.$invalid)
     }
   },
   computed:{
@@ -117,7 +117,7 @@ export default {
       </div>
     </fieldset>
     <div class="form__controls">
-      <button :class="['popup__btn', {'popup__btn_disabled':v$.$invalid}]" type="submit">Сохранить</button>
+      <button :class="['popup__btn', {'popup__btn_disabled':!this.role || v$.$invalid}]" type="submit">Сохранить</button>
     </div>
   </form>
 </template>
