@@ -1,7 +1,7 @@
 
 <script>
-import Card from "@/components/Card";
-import CardContext from "@/components/ContextMenu";
+import Card from "@/components/MainPage/Card";
+import CardContext from "@/components/MainPage/ContextMenu";
 import {mapStores} from 'pinia'
 import {useCardsStore} from "@/stores/cardsStore";
 import {useContextStore} from "@/stores/contextStore";

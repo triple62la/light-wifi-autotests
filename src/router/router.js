@@ -5,6 +5,7 @@ import MainPage from "@/pages/MainPage";
 import NotFound from "@/pages/NotFound";
 import AppLayout from "@/pages/AppLayout";
 import Users from "@/pages/UsersPage";
+import HistoryPage from "@/pages/HistoryPage";
 const routes = [
     {
         path: "/",
@@ -30,7 +31,11 @@ const routes = [
         path: "/test",
         component: AppLayout,
         name: "test"
-    }
+    },
+    {path: "/history",
+    component: HistoryPage,
+    name: "history"
+    },
 ]
 const router = createRouter({
     history:createWebHistory(),

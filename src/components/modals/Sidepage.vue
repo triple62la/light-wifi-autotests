@@ -1,7 +1,7 @@
 
 
 <script>
-import EditUserForm from "@/components/EditUserForm";
+import EditUserForm from "@/components/UsersPage/EditUserForm";
 export default {
   name: "Sidepage",
   components: {EditUserForm},

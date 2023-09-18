@@ -11,18 +11,17 @@ export default {
     },
     defaultHeading:{
       type:Number,
-      default: 0,
+      default: null,
     },
     selectedValue:{
       type:String,
       required:true
     }
   },
+
   data(){
     return {
-
       isOptionsShown:false,
-
     }
   },
   methods:{
@@ -41,7 +40,12 @@ export default {
         const height = this.options.length*32
           return `bottom: -${height}px`
       }
-  }
+  },
+  mounted() {
+    if (this.defaultHeading!==null){
+      this.onOptionClick(this.options[this.defaultHeading])
+    }
+  },
 }
 </script>
 
@@ -56,15 +60,58 @@ export default {
             <p class="options__item" v-for="item in options" :key="item.value" @click.stop="this.onOptionClick(item)">{{item.name}}</p>
         </div>
     </div>
+
 </template>
 
 
 <style scoped>
+
+
+
+/*body {*/
+/*  background: linear-gradient(35deg, red, purple);*/
+/*}*/
+
+/* <select> styles */
+select {
+  /* Reset */
+  appearance: none;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  /* Personalize */
+  width: max-content;
+  height: 3em;
+  padding: 0 4em 0 1em;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg)
+  no-repeat right 0.8em center / 1.4em,
+  linear-gradient(to left, rgba(255, 255, 255, 0.3) 3em, rgba(255, 255, 255, 0.2) 3em);
+  color: white;
+  border-radius: 0.25em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+/* <option> colors */
+option {
+  color: inherit;
+  background-color: #320a28;
+}
+/* Remove focus outline */
+&:focus {
+   outline: none;
+ }
+/* Remove IE arrow */
+&::-ms-expand {
+   display: none;
+ }
+}
+
+
+
 .wrapper{
     position: relative;
 }
   .heading{
-    width: 100%;
+    width: max-content;
     height: 32px;
     background-color: transparent;
     border-bottom: 2px solid #EC7D18;
@@ -74,12 +121,13 @@ export default {
 
   }
   .heading__text{
-      margin: 0;
-      color: #d0d0d0;
-      font-style: italic;
-      font-weight: 400;
-      font-size:  16px;
-      padding-top: 7px;
+    margin: 0;
+    color: #d0d0d0;
+    font-style: italic;
+    font-weight: 400;
+    font-size:  16px;
+    padding-top: 7px;
+    overflow:hidden ;
   }
 
   .heading__arrow{
@@ -91,10 +139,12 @@ export default {
     transform: rotate(270deg);
     font-weight: 600;
     font-size: 16px;
+    padding-top: 20px;
     /*transition: transform 0.3s ease;*/
   }
   .heading__arrow_rotate-reversed{
     transform: rotate(90deg);
+    padding-top: 0;
   }
   .options{
       position: absolute;

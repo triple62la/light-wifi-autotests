@@ -3,12 +3,12 @@
 
 import {mapActions, mapState} from "pinia";
 import {useUsersStore} from "@/stores/usersStore";
-import UsersTableRow from "@/components/UsersTableRow"
-import Dialog from "@/components/Dialog";
+import UsersTableRow from "@/components/UsersPage/UsersTableRow"
+import Dialog from "@/components/modals/Dialog";
 import {apiDeleteUser} from "@/api/mock";
-import Sidepage from "@/components/Sidepage";
-import EditUserForm from "@/components/EditUserForm";
-import AddUserForm from "@/components/AddUserForm";
+import Sidepage from "@/components/modals/Sidepage";
+import EditUserForm from "@/components/UsersPage/EditUserForm";
+import AddUserForm from "@/components/UsersPage/AddUserForm";
 
 export default {
   name: "UsersTable",
@@ -100,11 +100,11 @@ export default {
       </tbody>
     <div :class= '["btns-bar"]'>
       <button @click.stop="isAddSidepageShown=true" class="btns-bar__btn">
-        <img   class="btns-bar__btn-image" src="../assets/images/icons/icon-plus-white.svg" title="Добавить пользователя" alt="Добавить"></button>
+        <img class="btns-bar__btn-image" src="../../assets/images/icons/icon-plus-white.svg" title="Добавить пользователя" alt="Добавить"></button>
       <button @click.stop="isEditSidepageShown=true" :class='["btns-bar__btn", {"disabled": this.editBtnDisabled}]'>
-        <img class="btns-bar__btn-image" src="../assets/images/icons/icon-edit-white.svg" title="Редактировать пользователя" alt="Редактировать"></button>
+        <img class="btns-bar__btn-image" src="../../assets/images/icons/icon-edit-white.svg" title="Редактировать пользователя" alt="Редактировать"></button>
       <button @click.stop="showDialog" :class='["btns-bar__btn", {"disabled": this.deleteBtnDisabled}]' >
-        <img class="btns-bar__btn-image" src="../assets/images/icons/icon-trash-white.svg" title="Удалить пользователя" alt="Удалить"></button>
+        <img class="btns-bar__btn-image" src="../../assets/images/icons/icon-trash-white.svg" title="Удалить пользователя" alt="Удалить"></button>
     </div>
   </table>
   <Dialog @decline="this.isDialogShown=false"

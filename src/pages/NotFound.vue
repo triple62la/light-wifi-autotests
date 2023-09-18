@@ -1,9 +1,9 @@
 
 
 <script>
-import Header from "@/components/Header";
-import Main from "@/components/Main";
-import Footer from "@/components/Footer";
+import Header from "@/components/AppLayout/Header";
+import Main from "@/components/AppLayout/Main";
+import Footer from "@/components/AppLayout/Footer";
 export default {
   name: "NotFound",
   components: {Header,Main, Footer },

@@ -2,6 +2,7 @@
   <Header
       :title="this.title"
       :show-burger="this.showNav"
+      :show-profile="this.showProfile"
   />
   <Main>
     <NavBar v-if="showNav"/>
@@ -11,10 +12,10 @@
 </template>
 
 <script>
-import Header from "@/components/Header"
-import Main from "@/components/Main"
-import Footer from "@/components/Footer"
-import NavBar from "@/components/NavBar"
+import Header from "@/components/AppLayout/Header"
+import Main from "@/components/AppLayout/Main"
+import Footer from "@/components/AppLayout/Footer"
+import NavBar from "@/components/AppLayout/NavBar"
 export default {
   name: "AppLayout",
   components: {Header, Main, Footer, NavBar},
@@ -27,7 +28,10 @@ export default {
       type:Boolean,
       default:false,
     },
-
+    showProfile:{
+      type:Boolean,
+      default:false
+    }
   }
 }
 </script>

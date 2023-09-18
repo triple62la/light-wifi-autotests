@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import UserProfile from "@/components/UserProfile";
+import UserProfile from "@/components/UsersPage/UserProfile";
 import {useRootStore} from "@/stores/rootStore";
 import {mapActions, mapState} from "pinia";
 
@@ -64,7 +64,7 @@ export default {
 
   }
   .header__burger-btn{
-    background-image: url("../assets/images/icons/burger-icon.svg");
+    background-image: url("../../assets/images/icons/burger-icon.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

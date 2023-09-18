@@ -161,8 +161,8 @@ export default {
     disabled_card: cardData.disabled},
     cardData.status, ]">
     <h3 class="card__title">{{this.cardData.title}}</h3>
-    <img v-if="!cardData.disabled" class="card__icon" src="../assets/images/icons/free-icon-wifi-router-128px.png" alt="иконка карточки">
-    <img v-else class="card__icon" src="../assets/images/icons/x-button.png" alt="отключено">
+    <img v-if="!cardData.disabled" class="card__icon" src="../../assets/images/icons/free-icon-wifi-router-128px.png" alt="иконка карточки">
+    <img v-else class="card__icon" src="../../assets/images/icons/x-button.png" alt="отключено">
     <p v-show="!cardData.disabled" class="card__subtitle">Подключение<span  :class="getItemStatusClass(this.cardData.connection)"></span></p>
     <p v-show="!cardData.disabled" class="card__subtitle">Портал<span :class="getItemStatusClass(this.cardData.portal)"></span></p>
     <p v-show="!cardData.disabled" class="card__subtitle">Авторизация<span :class="getItemStatusClass(this.cardData.authorization)"></span></p>

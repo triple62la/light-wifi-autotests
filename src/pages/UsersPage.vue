@@ -10,7 +10,7 @@
 
 <script>
 import AppLayout from "@/pages/AppLayout";
-import UsersTable from "@/components/UsersTable";
+import UsersTable from "@/components/UsersPage/UsersTable";
 export default {
   name: "Users",
   components: {UsersTable, AppLayout},

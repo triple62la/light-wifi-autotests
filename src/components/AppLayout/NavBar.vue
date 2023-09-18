@@ -3,7 +3,7 @@
 <script>
 import {mapState} from "pinia";
 import {useRootStore} from "@/stores/rootStore";
-import NavLink from "@/components/NavLink";
+import NavLink from "@/components/AppLayout/NavLink";
 
 export default {
   name: "NavBar",

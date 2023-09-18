@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import LoginForm from "@/components/LoginForm";
-import NavBar from "@/components/NavBar";
-import MonitoringSection from "@/components/MonitoringSection";
+import Header from "@/components/AppLayout/Header";
+import Footer from "@/components/AppLayout/Footer";
+import LoginForm from "@/components/LoginPage/LoginForm";
+import NavBar from "@/components/AppLayout/NavBar";
+import MonitoringSection from "@/components/MainPage/MonitoringSection";
 import {mapStores} from "pinia/dist/pinia";
 import {useContextStore} from "@/stores/contextStore";
-import Main from "@/components/Main";
+import Main from "@/components/AppLayout/Main";
 export default {
   name: "MainPage",
   components: {Main, MonitoringSection, NavBar, Header,Footer},

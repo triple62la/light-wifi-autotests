@@ -1,6 +1,6 @@
 <template>
   <div v-show="showProfile" class="user-profile" @click.stop="toggleContext" :class="{opened:contextIsVisible}">
-    <img src="../assets/images/icons/icon-profile-user2.png" alt="профиль" class="user-profile__image">
+    <img src="../../assets/images/icons/icon-profile-user2.png" alt="профиль" class="user-profile__image">
   </div>
   <ul v-show="contextIsVisible" class="context" >
     <li class="context__element" @click="logoutUser">Выйти</li>

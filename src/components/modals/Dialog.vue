@@ -58,7 +58,7 @@ export default {
 
 <template>
   <div v-if="this.isShown" @click="_onOverlayClick" class="popup__overlay">
-    <div class="popup">
+    <div @click.stop="" class="popup">
       <h2 class="popup__title">{{title}}</h2>
       <form class="popup__form" @submit.prevent="">
         <div class="popup__controls">
