@@ -84,7 +84,7 @@ const cards = [
         title:"Юг",
         type:"light",
         ssid:"20_Ug_open_test",
-        status:"",
+        status:"failed",
         results:{
             connection:"success",
             sms:"success",

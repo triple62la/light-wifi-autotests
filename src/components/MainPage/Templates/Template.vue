@@ -44,7 +44,7 @@ const openContext = (e, contextActions, )=>{
     <template v-slot:title>
       <h3 class="title">{{ props.data.title }}</h3>
       <img v-if="data.disabled" class="icon" src="../../../assets/images/icons/x-button.png" alt="отключено">
-      <img  v-else class="icon" src="../../../assets/images/icons/free-icon-wifi-router-128px.png" alt="иконка карточки">
+<!--      <img  v-else class="icon" src="../../../assets/images/icons/free-icon-wifi-router-128px.png" alt="иконка карточки">-->
       <p class="subtitle">{{props.data.ssid}}</p>
     </template>
     <template v-slot:results>

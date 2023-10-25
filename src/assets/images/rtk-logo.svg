@@ -1,0 +1,3 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" class="logo__icon-mini" width="36"  height="59" ><defs><svg fill="none" viewBox="0 0 36 59" id="Logo-mini" xmlns="http://www.w3.org/2000/svg"><path d="M28.225 58.95H4.106c-1.742 0-2.766-1.546-2.766-2.91a2.888 2.888 0 0 1 .86-2.06l10.526-10.497L28.225 58.95Z" fill="#FF4F12"></path><path d="M4.101 58.95c-1.821 0-4.098-1.453-4.098-4.345V22.273c0-4.368-.222-7.444 2.907-10.564L14.649 0l20.823 20.796L2.188 53.984a2.901 2.901 0 0 0-.86 2.06c0 1.357 1.024 2.91 2.766 2.91" fill="#fff"></path></svg></defs>
+                            <use xlink:href="#Logo-mini"></use>
+                                                    </svg>

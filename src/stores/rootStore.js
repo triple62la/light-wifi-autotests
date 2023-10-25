@@ -18,6 +18,14 @@ export const useRootStore = defineStore("root", {
             this.burgerBtnOpened = !this.burgerBtnOpened
             this.navBarOpened = !this.navBarOpened
         },
+        openNavBar(){
+            this.burgerBtnOpened = true
+            this.navBarOpened = true
+        },
+        closeNavBar(){
+            this.burgerBtnOpened = false
+            this.navBarOpened = false
+        }
 
     }
 })

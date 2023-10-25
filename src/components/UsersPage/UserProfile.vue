@@ -1,10 +1,12 @@
 <template>
-  <div v-show="showProfile" class="user-profile" @click.stop="toggleContext" :class="{opened:contextIsVisible}">
-    <img src="../../assets/images/icons/icon-profile-user2.png" alt="профиль" class="user-profile__image">
+  <div class="wrapper">
+    <div v-show="showProfile" class="user-profile" @click.stop="toggleContext" :class="{opened:contextIsVisible}">
+      <img src="../../assets/images/icons/icon-profile-user2.png" alt="профиль" class="user-profile__image">
+    </div>
+    <ul v-show="contextIsVisible" class="context" >
+      <li class="context__element" @click="logoutUser">Выйти</li>
+    </ul>
   </div>
-  <ul v-show="contextIsVisible" class="context" >
-    <li class="context__element" @click="logoutUser">Выйти</li>
-  </ul>
 </template>
 
 <script>
@@ -46,18 +48,20 @@ export default {
 </script>
 
 <style scoped>
-  .user-profile{
 
+.wrapper{
+  position: relative;
+  margin: auto 0;
+}
+  .user-profile{
+    position: relative;
+    margin: auto 0;
     background-color: #333333;
     border-radius: 50%;
     width: 36px;
     height: 36px;
     display: flex;
     justify-content: center;
-    position: absolute;
-    top:30px;
-    right:30px;
-
   }
   .user-profile:hover{
     opacity: 0.6;
@@ -76,9 +80,9 @@ export default {
   }
   .context{
     position: absolute;
-    bottom:41px;
-    right:73px;
-
+    top:0;
+    left:0;
+    transform: translate(-110%, 25%);
     height: 24px;
     flex-direction: column;
     display: flex;

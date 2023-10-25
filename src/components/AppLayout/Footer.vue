@@ -18,6 +18,7 @@ export default {
     border-top: 2px #EC7D18 solid;
     height: 60px;
     width: 100%;
+
     justify-content: flex-end;
     align-items: center;
     padding-right: 20px;

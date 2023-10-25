@@ -1,14 +1,13 @@
 
 
 <script>
-import {mapState} from "pinia";
+import {mapActions, mapState} from "pinia";
 import {useRootStore} from "@/stores/rootStore";
 import NavLink from "@/components/AppLayout/NavLink";
 
 export default {
   name: "NavBar",
   components: {NavLink},
-  props:["activeLinkName"],
   computed:{
     ...mapState(useRootStore, ["navBarOpened"])
   },
@@ -39,19 +38,16 @@ export default {
           isActive:false,
 
         },
-      ]
+      ],
+      minimized: true
     }
   },
   methods:{
-    changeActiveLink(linkName){
-      for (const link of this.links){
-        linkName === link.name? link.isActive=true : link.isActive=false
-      }
-    },
     linkClick(name, route){
-        this.changeActiveLink(name)
         this.$router.push(route)
-    }
+    },
+    ...mapActions(useRootStore, ["openNavBar", "closeNavBar"]),
+
   },
 
 }
@@ -61,10 +57,10 @@ export default {
 
 <template>
   <Transition name="grow">
-    <nav v-if="navBarOpened" class="nav">
+    <nav  @mouseleave="minimized=true"  @mouseover="minimized=false" class="nav">
       <nav-link  v-for="(link, index) in links"
                  :link-data="link"
-                 :class="{'nav__link_active':link.name === activeLinkName}"
+                 :minimized="minimized"
                  @click="linkClick(link.name, link.route)"
       >{{ link.name }}</nav-link>
     </nav>
@@ -74,9 +70,26 @@ export default {
 
 <style scoped>
 .nav{
+  position: fixed;
+  top: 102px;
+  left: 0;
   background-color: #242424;
+  height: calc(100vh - 162px);
   display: flex;
   flex-direction: column;
+  width: 50px;
+  transition: width 0.4s ease;
+  z-index: 100;
+}
+.nav:hover{
+  width: 230px;
+  cursor: pointer;
+}
+.nav > li{
+  border-radius: 50%;
+}
+.nav:hover > li{
+  border-radius: 0;
 }
 
 .grow-enter-active{
@@ -87,7 +100,7 @@ export default {
 }
 @keyframes grow {
   0% {
-    width: 0;
+    width: 50px;
   }
   100% {
     width: 230px;

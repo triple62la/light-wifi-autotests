@@ -14,7 +14,9 @@ export default {
 
 <style scoped>
 .main{
+  position: relative;
   display: flex;
   flex: 1 0 auto;
+  padding-left: 15px;
 }
 </style>

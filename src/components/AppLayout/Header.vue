@@ -1,29 +1,18 @@
-<template>
-  <header class="header">
-    <div class="header__app-title-wrapper">
-      <div v-show="showBurger" @click="navBarToggleOpened" :class="[`header__burger-btn`, {'header__burger-btn_active': this.burgerBtnOpened}]"></div>
-      <h1 class="header__app-title">Light WiFi Sanity</h1>
-    </div>
-    <div class="header__container">
-      <h2 class="header__page-title">{{title}}</h2>
-      <UserProfile :show-profile="showProfile"/>
-    </div>
-  </header>
-</template>
-
 <script>
 import UserProfile from "@/components/UsersPage/UserProfile";
 import {useRootStore} from "@/stores/rootStore";
 import {mapActions, mapState} from "pinia";
+import rtk_logo from "@/assets/images/rtk-logo.svg"
+
 
 export default {
   name: "Header",
   components: {UserProfile},
   props:["title", "showProfile", "showBurger"],
   data(){
-   return {
-
-   }
+    return {
+      logo:rtk_logo,
+    }
   },
   computed:{
     ...mapState(useRootStore, ["burgerBtnOpened"])
@@ -37,6 +26,23 @@ export default {
 }
 </script>
 
+
+<template>
+  <header class="header">
+    <div class="header__container">
+      <div class="header__app-title-wrapper">
+        <!--      <div v-show="showBurger" @click="navBarToggleOpened" :class="[`header__burger-btn`, {'header__burger-btn_active': this.burgerBtnOpened}]"></div>-->
+        <img :src="logo" alt="логотип РТК ЦОД">
+        <h1 class="header__app-title">Light WiFi Sanity</h1>
+      </div>
+      <h2 class="header__page-title">{{title}}</h2>
+      <UserProfile :show-profile="showProfile"/>
+    </div>
+  </header>
+</template>
+
+
+
 <style scoped>
   .header{
     margin: 0 auto;
@@ -44,24 +50,23 @@ export default {
     height: 100px;
     border-bottom: 2px #EC7D18 solid;
     width: 100%;
+    display: flex;
     flex: 0 0 auto;
     position: relative;
 
   }
   .header__container{
     margin: 0 auto;
-    max-width: 1280px;
+    max-width: 1900px;
     width: 100%;
     display: flex;
-    justify-content: left;
+
+    padding: 0 50px;
   }
   .header__app-title-wrapper{
-    position: absolute;
-    top:35px;
-    left: 20px;
+
     display: flex;
     align-items: center;
-
   }
   .header__burger-btn{
     background-image: url("../../assets/images/icons/burger-icon.svg");
@@ -107,14 +112,12 @@ export default {
       display: none;
     }
   }
-
   .header__page-title{
-    margin: 0 auto;
+    margin: auto;
     font-size: 26px;
     font-weight: 700;
     line-height: 29px;
     color: white;
-    padding-top: 35px;
   }
   @media (max-width: 1024px) {
     .header__page-title{
