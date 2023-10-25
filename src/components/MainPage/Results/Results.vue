@@ -69,7 +69,7 @@
   border-top: #EC7D18 1px solid;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
 }
 .result_emoji{
   width: 14px;
@@ -79,10 +79,10 @@
 .test-types{
   list-style: none;
   margin: 0;
-  padding: 10px 0 0 15px;
+  padding: 15px 0 0 10px;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
 
 }
 .test-type{

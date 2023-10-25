@@ -17,7 +17,7 @@ const template = computed(()=>{
   switch (true){
     case props.data.disabled:
       return DisabledTemplate
-    case (!!props.data.forcedQueueIndex && props.data.status==="forced"):
+    case (props.data.forced):
       return ForcedTemplate
     default:
       return RegularTemplate
@@ -92,7 +92,7 @@ const openContext = (e, contextActions, )=>{
   height: 48px;
 }
 .selected{
-  /*border: 2px #EC7D18 solid;*/
+  border: 2px #EC7D18 solid;
   background-color: rgba(211, 211, 211, 0.15);
 }
 

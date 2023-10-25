@@ -38,7 +38,7 @@ const openContextMenu =(e)=>{
 function cancelForced(){
   apiCancelForced(props.data.id)
       .then(()=>{
-        store.setTemplateProperty("status",  "", props.data.id)
+        store.setTemplateProperty("forced",  false, props.data.id)
         props.data.forcedQueueIndex = 0
       })
 }

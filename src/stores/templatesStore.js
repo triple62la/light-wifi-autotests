@@ -18,8 +18,8 @@ export const useTemplatesStore = defineStore("templates", {
             const template = this.templates.find(template=>template.id === templateId)
             template[property] = value
         },
-        setStatus(value, templateId){
-            return (value, templateId)=>this.setTemplateProperty("status", value, templateId)
+        setForcedQeueIndexes(items){
+
         }
     }
 })

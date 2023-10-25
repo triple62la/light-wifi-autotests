@@ -20,6 +20,7 @@ const cards = [
         },
         lastCheck:new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
     {
@@ -39,6 +40,7 @@ const cards = [
         },
         lastCheck:new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
     {
@@ -58,6 +60,7 @@ const cards = [
         },
         lastCheck:new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
     {
@@ -77,6 +80,7 @@ const cards = [
         },
         lastCheck: new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
     {
@@ -96,6 +100,7 @@ const cards = [
         },
         lastCheck:new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
     {
@@ -115,6 +120,7 @@ const cards = [
         },
         lastCheck:new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
     {
@@ -134,6 +140,7 @@ const cards = [
         },
         lastCheck:new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
     {
@@ -153,6 +160,7 @@ const cards = [
         },
         lastCheck: new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
     {
@@ -172,6 +180,7 @@ const cards = [
         },
         lastCheck:new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
     {
@@ -191,6 +200,7 @@ const cards = [
         },
         lastCheck:new Date(),
         disabled:false,
+        forced:false,
         forcedQueueIndex:0,
     },
 ]
@@ -543,7 +553,7 @@ function apiSendEnabled(cardId){
         }), 250)
     })
 }
-function apiSendForced(cardId){
+function apiSetForced(cardId){
     return new Promise((resolve,reject)=>{
         if (!cardId){
             reject("Invalid CardID")
@@ -618,7 +628,7 @@ export {
     apiGetTemplates,
     apiSendDisabled,
     apiSendEnabled,
-    apiSendForced,
+    apiSetForced,
     apiCancelForced,
     apiGetUsers,
     apiDeleteUser,

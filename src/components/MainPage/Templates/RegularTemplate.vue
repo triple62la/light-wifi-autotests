@@ -1,5 +1,5 @@
 <script setup>
-import { apiSendDisabled, apiSendEnabled, apiSendForced} from "@/api/mock";
+import { apiSendDisabled, apiSendEnabled, apiSetForced} from "@/api/mock";
 import {computed, ref} from "vue";
 import {useTemplatesStore} from "@/stores/templatesStore";
 import ContextMenu from "@imengyu/vue3-context-menu";
@@ -77,11 +77,10 @@ function setForced(){
     alert("Внеочередная проверка на данном обьекте уже была запрошена")
     return
   }
-  apiSendForced(props.data.id)
+  apiSetForced(props.data.id)
       .then((data)=>{
-        props.data.status = "forced"
-        props.data.forcedQueueIndex = data.forcedQueueIndex
-
+        store.setTemplateProperty("forced", true, props.data.id)
+        //TODO Метод для обработки внеочередных проверок
       })
 }
 </script>
