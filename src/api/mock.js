@@ -1,120 +1,194 @@
+import { v4 as uuidv4 } from 'uuid';
+
+
+
 const cards = [
     {
-        id:crypto.randomUUID(),
-        title:"ОГО",
+        id:uuidv4(),
+        title:"Центр",
+        type:"light",
+        ssid:"20_Centr_open_test",
         status:"",
-        connection:"",
-        portal:"",
-        authorization:"",
-        internet:"",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck:new Date(),
         disabled:false,
         forcedQueueIndex:0,
     },
     {
-        id:crypto.randomUUID(),
-        title:"АГА",
+        id:uuidv4(),
+        title:"ДВ",
+        type:"light",
+        ssid:"20_DV_open_test",
         status:"",
-        connection:"",
-        portal:"",
-        authorization:"",
-        internet:"",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck:new Date(),
         disabled:false,
         forcedQueueIndex:0,
     },
     {
-        id:crypto.randomUUID(),
-        title:"ЕГЕ",
+        id:uuidv4(),
+        title:"Сибирь",
+        type:"light",
+        ssid: "light_2.0_open",
         status:"",
-        connection:"",
-        portal:"",
-        authorization:"",
-        internet:"",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck:new Date(),
         disabled:false,
         forcedQueueIndex:0,
     },
     {
-        id:crypto.randomUUID(),
-        title:"УГУ",
+        id:uuidv4(),
+        title:"СЗ",
+        type:"light",
+        ssid:"20_SZ_open_test",
         status:"",
-        connection:"",
-        portal:"",
-        authorization:"",
-        internet:"",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck: new Date(),
         disabled:false,
         forcedQueueIndex:0,
     },
     {
-        id:crypto.randomUUID(),
-        title:"ОГО",
+        id:uuidv4(),
+        title:"Юг",
+        type:"light",
+        ssid:"20_Ug_open_test",
         status:"",
-        connection:"",
-        portal:"",
-        authorization:"",
-        internet:"",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck:new Date(),
         disabled:false,
         forcedQueueIndex:0,
     },
     {
-        id:crypto.randomUUID(),
-        title:"АГА",
+        id:uuidv4(),
+        title:"Урал",
+        type:"light",
+        ssid:"20_Ural_open_test",
         status:"",
-        connection:"",
-        portal:"",
-        authorization:"",
-        internet:"",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck:new Date(),
         disabled:false,
         forcedQueueIndex:0,
     },
     {
-        id:crypto.randomUUID(),
-        title:"ЕГЕ",
+        id:uuidv4(),
+        title:"Волга",
+        type:"light",
+        ssid:"20_Ural_open_test",
         status:"",
-        connection:"",
-        portal:"",
-        authorization:"",
-        internet:"",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck:new Date(),
         disabled:false,
         forcedQueueIndex:0,
     },
     {
-        id:crypto.randomUUID(),
-        title:"ластецкая",
+        id:uuidv4(),
+        title:"Keenetic",
+        type:"keenetic",
+        ssid:"OTT20KEEN",
         status:"",
-        connection:"",
-        portal:"",
-        authorization:"",
-        internet:"",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck: new Date(),
         disabled:false,
         forcedQueueIndex:0,
     },
     {
-        id:crypto.randomUUID(),
-        title:"ОГО",
+        id:uuidv4(),
+        title:"Microtik",
+        type:"microtik",
+        ssid: "OTT_2.0_Mikrotik",
         status:"",
-        connection:"",
-        portal:"",
-        authorization:"",
-        internet:"",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck:new Date(),
         disabled:false,
         forcedQueueIndex:0,
     },
     {
-        id:crypto.randomUUID(),
-        title:"АГА",
+        id:uuidv4(),
+        title:"Классика Сибирь",
+        type:"classic",
+        ssid:"Classic_2.0_eltex",
         status:"inprogress",
-        connection:"inprogress",
-        portal:"inprogress",
-        authorization:"inprogress",
-        internet:"inprogress",
+        results:{
+            connection:"success",
+            sms:"success",
+            call:"success",
+            esia:"success",
+            room:"success",
+            closed:"success",
+            internet:"failed",
+        },
         lastCheck:new Date(),
         disabled:false,
         forcedQueueIndex:0,
@@ -123,7 +197,7 @@ const cards = [
 
 const users = [
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Васян",
         lastName:"Копченый",
         patronymic : "",
@@ -131,7 +205,7 @@ const users = [
         role:"user"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Оран",
         lastName:"Лохматов",
         patronymic : "Гутанович",
@@ -139,7 +213,7 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Пыпыт",
         lastName:"Хулемяувов",
         patronymic : "Пыпытович",
@@ -147,7 +221,7 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Васян",
         lastName:"Копченый",
         patronymic : "",
@@ -155,7 +229,7 @@ const users = [
         role:"user"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Оран",
         lastName:"Лохматов",
         patronymic : "Гутанович",
@@ -163,7 +237,7 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Пыпыт",
         lastName:"Хулемяувов",
         patronymic : "Пыпытович",
@@ -171,7 +245,7 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Васян",
         lastName:"Копченый",
         patronymic : "",
@@ -179,7 +253,7 @@ const users = [
         role:"user"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Оран",
         lastName:"Лохматов",
         patronymic : "Гутанович",
@@ -187,7 +261,7 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Пыпыт",
         lastName:"Хулемяувов",
         patronymic : "Пыпытович",
@@ -195,7 +269,7 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Васян",
         lastName:"Копченый",
         patronymic : "",
@@ -203,7 +277,7 @@ const users = [
         role:"user"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Оран",
         lastName:"Лохматов",
         patronymic : "Гутанович",
@@ -211,7 +285,7 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Пыпыт",
         lastName:"Хулемяувов",
         patronymic : "Пыпытович",
@@ -219,7 +293,7 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Васян",
         lastName:"Копченый",
         patronymic : "",
@@ -227,7 +301,7 @@ const users = [
         role:"user"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Оран",
         lastName:"Лохматов",
         patronymic : "Гутанович",
@@ -235,37 +309,14 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
-        name:"Пыпыт",
-        lastName:"Хулемяувов",
-        patronymic : "Пыпытович",
-        login:"imapussy",
-        role:"admin"
-    }, {
-        id:crypto.randomUUID(),
-        name:"Васян",
-        lastName:"Копченый",
-        patronymic : "",
-        login:"whosYourDaddy",
-        role:"user"
-    },
-    {
-        id:crypto.randomUUID(),
-        name:"Оран",
-        lastName:"Лохматов",
-        patronymic : "Гутанович",
-        login:"monkeyBuisness",
-        role:"admin"
-    },
-    {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Пыпыт",
         lastName:"Хулемяувов",
         patronymic : "Пыпытович",
         login:"imapussy",
         role:"admin"
     }, {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Васян",
         lastName:"Копченый",
         patronymic : "",
@@ -273,7 +324,7 @@ const users = [
         role:"user"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
         name:"Оран",
         lastName:"Лохматов",
         patronymic : "Гутанович",
@@ -281,7 +332,30 @@ const users = [
         role:"admin"
     },
     {
-        id:crypto.randomUUID(),
+        id:uuidv4(),
+        name:"Пыпыт",
+        lastName:"Хулемяувов",
+        patronymic : "Пыпытович",
+        login:"imapussy",
+        role:"admin"
+    }, {
+        id:uuidv4(),
+        name:"Васян",
+        lastName:"Копченый",
+        patronymic : "",
+        login:"whosYourDaddy",
+        role:"user"
+    },
+    {
+        id:uuidv4(),
+        name:"Оран",
+        lastName:"Лохматов",
+        patronymic : "Гутанович",
+        login:"monkeyBuisness",
+        role:"admin"
+    },
+    {
+        id:uuidv4(),
         name:"Пыпыт",
         lastName:"Хулемяувов",
         patronymic : "Пыпытович",
@@ -291,7 +365,129 @@ const users = [
 ]
 
 
-function apiGetCards(){
+const history = [
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"ordinary",
+        authType:"sms",
+        ssid:"sib-esr-hi-fi-wifi-536",
+        result:"success",
+        customer:users[4]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"ordinary",
+        authType:"sms",
+        ssid:"sib-esr-hi-fi-wifi-64574",
+        result:"success",
+        customer:users[4]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"ordinary",
+        authType:"sms",
+        ssid:"sib-esr-hi-fi-wifi-782536",
+        result:"success",
+        customer:users[4]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"ordinary",
+        authType:"sms",
+        ssid:"sib-esr-hi-fi-wifi-5347286",
+        result:"success",
+        customer:users[4]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"ordinary",
+        authType:"call",
+        ssid:"sib-esr-hi-fi-wifi-55752236",
+        result:"success",
+        customer:users[1]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"ordinary",
+        authType:"call",
+        ssid:"sib-esr-hi-fi-wifi-71428236",
+        result:"success",
+        customer:users[1]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"ordinary",
+        authType:"call",
+        ssid:"sib-esr-hi-fi-wifi-52785752236",
+        result:"success",
+        customer:users[1]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"ordinary",
+        authType:"call",
+        ssid:"sib-esr-hi-fi-wifi-528242236",
+        result:"success",
+        customer:users[1]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"extra",
+        authType:"esia",
+        ssid:"sib-esr-hi-fi-wifi-52836",
+        result:"success",
+        customer:users[3]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"extra",
+        authType:"esia",
+        ssid:"sib-esr-hi-fi-wifi-154442236",
+        result:"failed",
+        customer:users[3]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"extra",
+        authType:"esia",
+        ssid:"sib-esr-hi-fi-wifi-18582236",
+        result:"failed",
+        customer:users[3]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"extra",
+        authType:"esia",
+        ssid:"sib-esr-hi-fi-wifi-154572236",
+        result:"failed",
+        customer:users[3]
+    },
+    {
+        id: uuidv4(),
+        date: new Date(),
+        testType:"extra",
+        authType:"esia",
+        ssid:"sib-esr-hi-fi-wifi-15214136",
+        result:"failed",
+        customer:users[3]
+    },
+]
+
+
+
+function apiGetTemplates(){
     return new Promise((resolve,reject)=>{
         setTimeout(()=>resolve(cards), 150)
     })
@@ -411,14 +607,21 @@ function apiEditUser(userID){
     })
 }
 
+function apiGetHistory(){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>resolve(history), 400)
+    })
+}
+
 export {
     cards,
-    apiGetCards,
+    apiGetTemplates,
     apiSendDisabled,
     apiSendEnabled,
     apiSendForced,
     apiCancelForced,
     apiGetUsers,
     apiDeleteUser,
-    apiEditUser
+    apiEditUser,
+    apiGetHistory
 }

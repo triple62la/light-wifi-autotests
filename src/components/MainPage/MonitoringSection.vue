@@ -1,41 +1,28 @@
 
-<script>
-import Card from "@/components/MainPage/Card";
-import CardContext from "@/components/MainPage/ContextMenu";
-import {mapStores} from 'pinia'
-import {useCardsStore} from "@/stores/cardsStore";
-import {useContextStore} from "@/stores/contextStore";
-
-export default {
-  name: "MonitoringSection",
-  components: {Card, CardContext},
-  data(){
-    return {
-    x:""
-  }
-
-  },
-  methods:{
+<script setup>
+import Template from "@/components/MainPage/Templates/Template";
+import {useTemplatesStore} from "@/stores/templatesStore";
+import {onMounted} from "vue";
+import {storeToRefs} from "pinia/dist/pinia";
 
 
-  },
-  computed:{
-    ...mapStores(useCardsStore, useContextStore)
-  },
-  mounted() {
-    this.cardsStore.fetchCards()
-  }
+const templatesStore = useTemplatesStore()
+const {items} = storeToRefs(templatesStore)
 
-}
+
+onMounted(()=>{
+  templatesStore.fetchTemplates()
+})
+
+
 </script>
 
 <template>
   <section  class="cards" >
-    <Card v-for="item in this.cardsStore.items"
+    <Template v-for="item in items"
           :key="item.id"
-          :card-data="item"
-    ></Card>
-    <CardContext/>
+          :data="item">
+    </Template>
   </section>
 </template>
 

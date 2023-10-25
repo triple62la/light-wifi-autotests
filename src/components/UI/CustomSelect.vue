@@ -1,13 +1,15 @@
-
-
+//для корректной работы компонента необходимо передать в пропс "options" массив с обьектами вида {name:str, value:str}
+// а так же в родительском компонентe подписаться  c помощьью v-model на selected-value
+// Пример: CustomSelect v-model:selected-value="searchBar.selectedType" :default-heading="0" :options="selectOptions"/>
 <script>
-// import downArrow from ""
+
 export default {
   name: "CustomSelect",
   props:{
     options:{
       type:Array,
-      default:[]
+      default:[],
+      required: true
     },
     defaultHeading:{
       type:Number,
@@ -15,7 +17,11 @@ export default {
     },
     selectedValue:{
       type:String,
-      required:true
+      required:false
+    },
+    extraClass:{
+      type:Object,
+      required:false
     }
   },
 
@@ -27,7 +33,15 @@ export default {
   methods:{
     onOptionClick(option){
       this.$emit ("update:selectedValue",  option.value)
-      this.isOptionsShown = false
+     this.closeOptions()
+    },
+    openOptions(){
+      this.isOptionsShown=true
+      document.addEventListener("click", this.closeOptions)
+    },
+    closeOptions(){
+      this.isOptionsShown=false
+      document.removeEventListener("click", this.closeOptions)
     }
   },
   computed:{
@@ -51,10 +65,10 @@ export default {
 
 
 <template>
-    <div class="wrapper">
-        <div @click.stop="this.isOptionsShown=!this.isOptionsShown" class="heading">
-            <p class="heading__text">{{heading || "Выберите"}}</p>
-            <div class="heading__arrow" :class="{'heading__arrow_rotate-reversed':this.isOptionsShown}">&lt;</div>
+    <div class="wrapper" :style="extraClass">
+        <div @click.stop="openOptions" class="heading">
+            <p :style="extraClass" class="heading__text">{{heading || "Выберите"}}</p>
+            <button type="button" class="heading__arrow" :class="{'heading__arrow_rotate-reversed':this.isOptionsShown}">&lt;</button>
         </div>
         <div v-show="isOptionsShown" class="options" :style="optionsPosition" >
             <p class="options__item" v-for="item in options" :key="item.value" @click.stop="this.onOptionClick(item)">{{item.name}}</p>
@@ -66,111 +80,84 @@ export default {
 
 <style scoped>
 
-
-
-/*body {*/
-/*  background: linear-gradient(35deg, red, purple);*/
-/*}*/
-
-/* <select> styles */
-select {
-  /* Reset */
-  appearance: none;
-  border: 0;
-  outline: 0;
-  font: inherit;
-  /* Personalize */
-  width: max-content;
-  height: 3em;
-  padding: 0 4em 0 1em;
-  background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg)
-  no-repeat right 0.8em center / 1.4em,
-  linear-gradient(to left, rgba(255, 255, 255, 0.3) 3em, rgba(255, 255, 255, 0.2) 3em);
-  color: white;
-  border-radius: 0.25em;
-  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-/* <option> colors */
-option {
-  color: inherit;
-  background-color: #320a28;
-}
-/* Remove focus outline */
-&:focus {
-   outline: none;
- }
-/* Remove IE arrow */
-&::-ms-expand {
-   display: none;
- }
-}
-
-
-
 .wrapper{
-    position: relative;
-}
-  .heading{
-    width: max-content;
-    height: 32px;
-    background-color: transparent;
-    border-bottom: 2px solid #EC7D18;
-      display: flex;
-      justify-content: space-between;
-      cursor: pointer;
+  position: relative;
+  border-bottom: #EC7D18 2px solid;
+  width: max-content;
+  display: flex;
 
-  }
-  .heading__text{
+
+}
+.heading{
+  margin: auto;
+  width: max-content;
+  height: 32px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #EC7D18;
+
+}
+.heading__text{
+  margin: 0;
+  font-style: italic;
+  font-weight: 400;
+  font-size:  16px;
+  padding: 0 5px 0 0;
+  overflow:hidden ;
+  color: #d5d5d5;
+}
+
+.heading__arrow{
+
+  margin: 0;
+  display: flex;
+  color: #EC7D18;
+  background-color: transparent;
+  transform: rotate(270deg);
+  font-weight: 600;
+  font-size: 16px;
+  /*transition: transform 0.3s ease;*/
+  border: none;
+  outline: none;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer ;
+
+
+}
+.heading__arrow_rotate-reversed{
+  transform: rotate(90deg);
+  padding-top: 0;
+}
+.options{
+    position: absolute;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    background-color: #3D3D3D;
+    padding: 10px;
+    border: 1px white solid;
+    border-radius: 5px;
+
+}
+.options__item{
     margin: 0;
     color: #d0d0d0;
     font-style: italic;
     font-weight: 400;
     font-size:  16px;
-    padding-top: 7px;
-    overflow:hidden ;
-  }
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    padding: 5px;
+  border-radius: 5px;
 
-  .heading__arrow{
-
-    margin: 0;
-    display: inline-block;
-    color: #EC7D18;
-    background-color: transparent;
-    transform: rotate(270deg);
-    font-weight: 600;
-    font-size: 16px;
-    padding-top: 20px;
-    /*transition: transform 0.3s ease;*/
-  }
-  .heading__arrow_rotate-reversed{
-    transform: rotate(90deg);
-    padding-top: 0;
-  }
-  .options{
-      position: absolute;
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      background-color: #3D3D3D;
-      padding: 5px;
-      border: 1px white solid;
-      border-radius: 5px;
-
-  }
-  .options__item{
-      margin: 0;
-      color: #d0d0d0;
-      font-style: italic;
-      font-weight: 400;
-      font-size:  16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, opacity 0.3s ease;
-      padding: 5px 0;
-
-  }
-  .options__item:hover{
-      opacity: 0.6;
-      background-color: #636363;
-  }
+}
+.options__item:hover{
+    opacity: 0.6;
+    background-color: #636363;
+}
 </style>

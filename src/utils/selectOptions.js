@@ -1,0 +1,46 @@
+export const checkTypeOptions=[
+    {
+        name:"Все",
+        value:"all"
+    },
+    {
+        name:"Внеочередные",
+        value:"extra"
+    },
+    {
+        name:"Очередные",
+        value:"ordinary"
+    },
+]
+export const authTypeOptions =[
+    {
+        name:"Все",
+        value:"all"
+    },
+    {
+        name:"СМС",
+        value:"sms"
+    },
+    {
+        name:"Звонок",
+        value:"call"
+    },
+    {
+        name:"ЕСИА",
+        value:"esia"
+    },
+]
+export const resultTypeOptions = [
+    {
+        name:"Все",
+        value:"all"
+    },
+    {
+        name:"Успешные",
+        value:"success"
+    },
+    {
+        name:"Неуспешные",
+        value:"failed"
+    },
+]

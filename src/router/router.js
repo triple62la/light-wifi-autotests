@@ -1,11 +1,11 @@
 
 import {createRouter, createWebHistory} from "vue-router"
-import LoginPage from "@/pages/LoginPage";
-import MainPage from "@/pages/MainPage";
-import NotFound from "@/pages/NotFound";
-import AppLayout from "@/pages/AppLayout";
-import Users from "@/pages/UsersPage";
-import HistoryPage from "@/pages/HistoryPage";
+const LoginPage = ()=> import( "@/pages/LoginPage");
+const  MainPage = ()=>import("@/pages/MainPage");
+const  NotFound = ()=> import("@/pages/NotFound");
+// import AppLayout from "@/pages/AppLayout";
+const  Users = ()=> import("@/pages/UsersPage");
+const HistoryPage = ()=> import( "@/pages/HistoryPage");
 const routes = [
     {
         path: "/",
@@ -27,11 +27,11 @@ const routes = [
         name: "NotFound",
         component: NotFound
     },
-    {
-        path: "/test",
-        component: AppLayout,
-        name: "test"
-    },
+    // {
+    //     path: "/test",
+    //     component: AppLayout,
+    //     name: "test"
+    // },
     {path: "/history",
     component: HistoryPage,
     name: "history"

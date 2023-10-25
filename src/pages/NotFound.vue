@@ -20,8 +20,8 @@ export default {
   <Main>
     <div class="sad-cat">
       <p class="sad-cat__text" style="">Запрошенная страница не найдена :(((</p>
-      <div class="sad-cat__image"></div>
-      <router-link class="sad-cat__text" to="/">На главную!</router-link>
+      <div @click="$router.go(-1)" class="sad-cat__image"></div>
+      <p class="sad-cat__text" @click="$router.go(-1)">Назад(((</p>
     </div>
 
   </Main>
@@ -40,8 +40,8 @@ export default {
   color: white;
   font-size: 16px;
   font-weight: 600;
-
-
+  text-decoration: underline;
+  cursor: pointer;
 }
 .sad-cat__image{
   background-image: url("@/assets/images/sad_cat.png");
