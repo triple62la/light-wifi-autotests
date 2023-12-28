@@ -24,6 +24,13 @@ const template = computed(()=>{
   }
 })
 
+const timeFormat = computed(()=>{
+  const options = {
+    hour: 'numeric', minute: 'numeric', second: 'numeric',
+    year: 'numeric', month: 'numeric', day: 'numeric',
+  }
+  return props.data.lastCheck? props.data.lastCheck.toLocaleDateString("ru-RU", options) : "проверяется"
+})
 
 const openSettings = (tempId)=>console.log("Запрошен метод открытия настроек для обьекта с id=", tempId)
 const setSelected = (value)=>selected.value = value
@@ -43,14 +50,18 @@ const openContext = (e, contextActions, )=>{
   <component  :class="['template', {selected}]" :is="template" :data="data" :methods="{openSettings, openContext}">
     <template v-slot:title>
       <h3 class="title">{{ props.data.title }}</h3>
-      <img v-if="data.disabled" class="icon" src="../../../assets/images/icons/x-button.png" alt="отключено">
+      <img v-if="props.data.disabled" class="icon" src="../../../assets/images/icons/x-button.png" alt="отключено">
 <!--      <img  v-else class="icon" src="../../../assets/images/icons/free-icon-wifi-router-128px.png" alt="иконка карточки">-->
       <p class="subtitle">{{props.data.ssid}}</p>
     </template>
     <template v-slot:results>
       <Results :results="props.data.results" />
     </template>
+    <template v-slot:lastCheck>
+      <p  class="card__subtitle card__subtitle_type_lastcheck">{{timeFormat}}</p>
+    </template>
   </component>
+
 </template>
 
 
@@ -83,6 +94,15 @@ const openContext = (e, contextActions, )=>{
   font-weight: 700;
   line-height: 18px;
   text-align: center;
+}
+.card__subtitle{
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+.card__subtitle_type_lastcheck{
+  padding-top: 10px;
 }
 .icon{
   margin: 0 auto;

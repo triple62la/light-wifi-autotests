@@ -20,7 +20,7 @@ const contextMenuEnabled=[
       },
       {
         label: "Настройки",
-        onClick: (e)=>props.methods.openSettings(data.id),
+        onClick: (e)=>props.methods.openSettings(props.data.id),
         args:[]
       },
       {
@@ -32,17 +32,6 @@ const contextMenuEnabled=[
 
 
 const store = useTemplatesStore()
-
-
-
-
-const timeFormat = computed(()=>{
-  const options = {
-    hour: 'numeric', minute: 'numeric', second: 'numeric',
-    year: 'numeric', month: 'numeric', day: 'numeric',
-  }
-  return props.data.lastCheck? props.data.lastCheck.toLocaleDateString("ru-RU", options) : "проверяется"
-})
 
 const getCardClass = computed(()=>{
   let statusClasses = props.data.status? "card "  + "card_type_" + props.data.status : "card"
@@ -89,7 +78,7 @@ function setForced(){
   <div  @click.right.prevent.stop="onContext"  :class="[props.data.status]">
     <slot name="title"></slot>
     <slot name="results"></slot>
-    <p  class="card__subtitle card__subtitle_type_lastcheck">{{timeFormat}}</p>
+    <slot name="lastCheck"></slot>
   </div>
 </template>
 
@@ -102,19 +91,8 @@ function setForced(){
   background-color: rgba(215, 45, 22, 0.6);
 }
 
-.forced{
-  background-color: #47178361;
-}
 
-.card__subtitle{
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 18px;
-  text-align: center;
-}
-.card__subtitle_type_lastcheck{
-  padding-top: 10px;
-}
+
 .card__subtitle-icon{
   display: inline-block;
   width: 14px;

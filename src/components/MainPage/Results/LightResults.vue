@@ -15,7 +15,6 @@
   <p  class="card__subtitle">Портал<span :class="getItemStatusClass(this.data.portal)"></span></p>
   <p  class="card__subtitle">Авторизация<span :class="getItemStatusClass(this.data.authorization)"></span></p>
   <p  class="card__subtitle">Интернет<span :class="getItemStatusClass(this.data.internet)"></span></p>
-  <p  class="card__subtitle card__subtitle_type_lastcheck">{{timeFormat}}</p>
   <p  class="card__index">{{ props.data.forcedQueueIndex }}</p>
 </template>
 

@@ -50,15 +50,23 @@ function cancelForced(){
 
 <template>
   <div  @click="test" @click.right.prevent.stop="openContextMenu" class="card" :class="[{
-    selected:props.data.selected},
-    data.status, ]">
+    selected:props.data.selected,
+    forced:!props.data.status
+    },
+      props.data.status, ]">
     <slot name="title"></slot>
     <slot name="results"></slot>
+    <slot name="lastCheck"></slot>
   </div>
 </template>
 
 
 <style scoped>
+
+.forced{
+  background-color: #47178361;
+}
+
 
 .card__index{
   position: absolute;
@@ -72,6 +80,7 @@ function cancelForced(){
   text-align: center;
   color: black;
 }
+
 
 
 </style>
